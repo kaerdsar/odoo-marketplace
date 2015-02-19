@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+		<record id="customer_purchase_order_form" model="ir.ui.view">
+            <field name="name">customer.purchase.order.form</field>
+            <field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form" />
+            <field name="arch" type="xml">
+            	<button name="wkf_send_rfq" states="draft" position="replace">
+            		<button name="wkf_send_rfq" states="draft" string="Send to Partner" type="object" context="{'send_rfq':True}" class="oe_highlight"/>
+				</button>
+				<button name="wkf_send_rfq" states="sent" position="replace">
+					<button name="wkf_send_rfq" states="sent" string="Re-Send to Partner" type="object" context="{'send_rfq':True}"/>
+				</button>
+				<button name="wkf_send_rfq" states="approved" position="replace">
+					<button name="wkf_send_rfq" states="approved" string="Send to Partner" type="object" context="{'send_rfq':False}"/>
+				</button>
+			</field>
+		</record>
+
+    </data>
+</openerp>
