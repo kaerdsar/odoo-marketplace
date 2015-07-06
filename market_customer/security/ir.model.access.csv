@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sales_account_payment_term,sales.account.payment.term,account.model_account_payment_term,purchase.group_purchase_manager,1,1,1,1
+access_purchase_product_template_commodity,market_product.product.template.commodity,market_product.model_product_template_commodity,purchase.group_purchase_manager,1,1,1,1
+access_purchase_product_commodity_variant,market_product.product.commodity.variant,market_product.model_product_commodity_variant,purchase.group_purchase_manager,1,1,1,1

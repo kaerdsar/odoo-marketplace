@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+    <record id="view_market_request_form" model="ir.ui.view">
+        <field name="name">market.request.form</field>
+        <field name="model">market.request</field>
+        <field name="arch" type="xml">
+            <form string="Market Request" create="false" edit="false">
+	            <sheet>
+	                <div class="pull-left">
+	                    <label for="name" class="oe_edit_only oe_inline"/>
+	                    <h1>
+	                        <field name="name" class="oe_inline" />
+	                    </h1>
+	                </div>
+	                <group>
+	                	<group>
+	                		<field name="partner_id" />
+							<field name="country_id" />
+	                		<field name="destination_id" />
+							<field name="frequency" />
+	                	</group>
+						<group>
+							<field name="date_end" />
+	                    	<field name="ordering_date" />
+	                    	<field name="schedule_date" />
+						</group>
+	                </group>
+	                <notebook>
+	                    <page string="Lines">
+	                        <field name="line_ids" context="{'catalog_db': 'db_master'}">
+	                            <tree string="Products" editable="bottom">
+	                                <field name="commodity_id" />
+									<field name="variety_id" />
+									<field name="package_id" />
+	                                <field name="quantity"/>
+	                            </tree>
+	                        </field>
+	                        <separator string="Description"/>
+	                        <field name="description" />
+	                    </page>
+	                </notebook>
+	            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_market_request_tree" model="ir.ui.view">
+        <field name="name">market.request.tree</field>
+        <field name="model">market.request</field>
+        <field name="arch" type="xml">
+            <tree string="Requests" create="false">
+                <field name="name"/>
+                <field name="country_id"/>
+                <field name="partner_id"/>
+				<field name="summary"/>
+            </tree>
+      	</field>
+    </record>
+
+    </data>
+</openerp>

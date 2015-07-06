@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- QWeb Reports -->
+        <report 
+            id="commercial_invoices"
+            model="commercial.invoice"
+            string="Invoices"
+            report_type="qweb-pdf"
+            name="market_b2b_supplier.invoice_report_template"
+            file="market_b2b_supplier.invoice_report_template"
+            attachment_use="True"
+            attachment="object.name.replace('/','')+'.pdf'"
+        />
+
+    </data>
+</openerp>

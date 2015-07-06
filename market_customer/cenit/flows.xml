@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+		
+	<data>
+		
+		<!-- Send Flows -->
+		
+		<record id="client_flow_send_purchases" model="cenit.flow">
+			<field name="name">Send Purchase</field>
+			<field name="root">order</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'purchase.order')]" />
+			<field name="execution">only_manual</field>
+			<field name="purpose">send</field>
+			<field name="method">local_post</field>
+		</record>
+		
+		<record id="client_flow_send_request" model="cenit.flow">
+			<field name="name">Send Request</field>
+			<field name="root">request</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'purchase.requisition')]" />
+			<field name="execution">only_manual</field>
+			<field name="purpose">send</field>
+			<field name="method">local_post</field>
+		</record>
+		
+		<record id="client_flow_send_in_invoice" model="cenit.flow">
+			<field name="name">Send In Invoice</field>
+			<field name="root">invoice</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'account.invoice')]" />
+			<field name="execution">only_manual</field>
+			<field name="purpose">send</field>
+			<field name="method">local_post</field>
+		</record>
+		
+		<!-- Receive Flows -->
+		
+		<record id="client_flow_add_purchases" model="cenit.flow">
+			<field name="name">Add Purchase</field>
+			<field name="root">order</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'purchase.order')]" />
+			<field name="execution">on_create</field>
+			<field name="purpose">receive</field>
+		</record>
+		
+		<record id="client_flow_update_product" model="cenit.flow">
+			<field name="name">Update Product</field>
+			<field name="root">product</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'product.template.commodity')]" />
+			<field name="execution">on_write</field>
+			<field name="purpose">receive</field>
+			<field name="method">local_post</field>
+		</record>
+		
+		<record id="client_flow_add_in_invoice" model="cenit.flow">
+			<field name="name">Add In Invoice</field>
+			<field name="root">invoice</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'account.invoice')]" />
+			<field name="execution">on_create</field>
+			<field name="purpose">receive</field>
+			<field name="method">local_post</field>
+		</record>
+		   
+    </data>
+</openerp>

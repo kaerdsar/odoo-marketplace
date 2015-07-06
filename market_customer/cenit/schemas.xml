@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    	
+		<!-- Purchase Order -->
+        
+        <record id="data_type_purchase_order" model="cenit.data.type">
+            <field name="name">order</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'purchase.order')]" />
+        </record>
+		
+		<record id="data_type_purchase_order_flow" model="cenit.data.type.line">
+            <field name="name">flow</field>
+			<field name="line_type">field</field>
+			<field name="value">flow</field>
+			<field name="primary" eval="True"/>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+        
+        <record id="data_type_purchase_order_reference" model="cenit.data.type.line">
+            <field name="name">reference</field>
+			<field name="line_type">field</field>
+			<field name="value">reference</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_state" model="cenit.data.type.line">
+            <field name="name">status</field>
+			<field name="line_type">field</field>
+			<field name="value">status</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_currency" model="cenit.data.type.line">
+            <field name="name">currency_id</field>
+			<field name="line_type">reference</field>
+			<field name="value">currency</field>
+			<field name="reference_id" ref="market_product.data_type_currency" />
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_incoterm" model="cenit.data.type.line">
+            <field name="name">incoterm_id</field>
+			<field name="line_type">model</field>
+			<field name="value">incoterm</field>
+			<field name="line_cardinality">2one</field>
+			<field name="reference_id" ref="market_product.data_type_incoterm" />
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_payment_term" model="cenit.data.type.line">
+            <field name="name">payment_term_id</field>
+			<field name="line_type">model</field>
+			<field name="value">payment_term</field>
+			<field name="line_cardinality">2one</field>
+			<field name="reference_id" ref="market_product.data_type_payment_term" />
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_date_order" model="cenit.data.type.line">
+            <field name="name">date_order</field>
+			<field name="line_type">field</field>
+			<field name="value">placed_on</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_note" model="cenit.data.type.line">
+            <field name="name">notes</field>
+			<field name="line_type">field</field>
+			<field name="value">note</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_city_of_origin" model="cenit.data.type.line">
+            <field name="name">city_of_origin</field>
+			<field name="line_type">field</field>
+			<field name="value">city_of_origin</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_departure_port" model="cenit.data.type.line">
+            <field name="name">departure_port</field>
+			<field name="line_type">field</field>
+			<field name="value">departure_port</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_arrival_port" model="cenit.data.type.line">
+            <field name="name">arrival_port</field>
+			<field name="line_type">field</field>
+			<field name="value">arrival_port</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_destination_city" model="cenit.data.type.line">
+            <field name="name">destination_city</field>
+			<field name="line_type">field</field>
+			<field name="value">destination_city</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_carrier" model="cenit.data.type.line">
+            <field name="name">carrier</field>
+			<field name="line_type">field</field>
+			<field name="value">carrier</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_mode_of_payment" model="cenit.data.type.line">
+            <field name="name">mode_of_payment</field>
+			<field name="line_type">field</field>
+			<field name="value">mode_of_payment</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_mode_of_transport" model="cenit.data.type.line">
+            <field name="name">mode_of_transport</field>
+			<field name="line_type">field</field>
+			<field name="value">mode_of_transport</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_awb_bl_number" model="cenit.data.type.line">
+            <field name="name">awb_bl_number</field>
+			<field name="line_type">field</field>
+			<field name="value">awb_bl_number</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_shipping_date" model="cenit.data.type.line">
+            <field name="name">shipping_date</field>
+			<field name="line_type">field</field>
+			<field name="value">shipping_date</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_partner" model="cenit.data.type.line">
+            <field name="name">partner_id</field>
+			<field name="line_type">model</field>
+			<field name="value">supplier_address</field>
+			<field name="line_cardinality">2one</field>
+			<field name="reference_id" ref="market_product.data_type_res_partner" />
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_billing_address" model="cenit.data.type.line">
+            <field name="name">billing_address</field>
+			<field name="line_type">field</field>
+			<field name="value">billing_address</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<record id="data_type_purchase_order_line_items" model="cenit.data.type.line">
+            <field name="name">line_items</field>
+			<field name="line_type">field</field>
+			<field name="value">line_items</field>
+			<field name="data_type_id" ref="data_type_purchase_order"/>
+        </record>
+		
+		<!-- Request -->
+		
+		<record id="purchase_data_type_request" model="cenit.data.type">
+            <field name="name">request</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'purchase.requisition')]" />
+        </record>
+		
+		<record id="purchase_data_type_request_name" model="cenit.data.type.line">
+            <field name="name">name</field>
+			<field name="line_type">field</field>
+			<field name="value">name</field>
+			<field name="primary" eval="True"/>
+			<field name="data_type_id" ref="purchase_data_type_request"/>
+        </record>
+		
+		<record id="purchase_data_type_request_partner" model="cenit.data.type.line">
+            <field name="name">partner_id</field>
+			<field name="line_type">field</field>
+			<field name="value">customer</field>
+			<field name="data_type_id" ref="purchase_data_type_request"/>
+        </record>
+		
+		<record id="purchase_data_type_request_country" model="cenit.data.type.line">
+            <field name="name">country_id</field>
+			<field name="line_type">field</field>
+			<field name="value">country</field>
+			<field name="data_type_id" ref="purchase_data_type_request"/>
+        </record>
+
+		<record id="purchase_data_type_request_destination" model="cenit.data.type.line">
+            <field name="name">destination_id</field>
+			<field name="line_type">field</field>
+			<field name="value">destination</field>
+			<field name="data_type_id" ref="purchase_data_type_request"/>
+        </record>
+		
+		<record id="purchase_data_type_request_frequency" model="cenit.data.type.line">
+            <field name="name">frequency</field>
+			<field name="line_type">field</field>
+			<field name="value">frequency</field>
+			<field name="data_type_id" ref="purchase_data_type_request"/>
+        </record>
+		
+		<record id="purchase_data_type_request_ordering_date" model="cenit.data.type.line">
+            <field name="name">ordering_date</field>
+			<field name="line_type">field</field>
+			<field name="value">ordering_date</field>
+			<field name="data_type_id" ref="purchase_data_type_request"/>
+        </record>
+		
+		<record id="purchase_data_type_request_date_end" model="cenit.data.type.line">
+            <field name="name">date_end</field>
+			<field name="line_type">field</field>
+			<field name="value">date_end</field>
+			<field name="data_type_id" ref="purchase_data_type_request"/>
+        </record>
+		
+		<record id="purchase_data_type_request_schedule_date" model="cenit.data.type.line">
+            <field name="name">schedule_date</field>
+			<field name="line_type">field</field>
+			<field name="value">schedule_date</field>
+			<field name="data_type_id" ref="purchase_data_type_request"/>
+        </record>
+		
+		<record id="purchase_data_type_request_description" model="cenit.data.type.line">
+            <field name="name">description</field>
+			<field name="line_type">field</field>
+			<field name="value">description</field>
+			<field name="data_type_id" ref="purchase_data_type_request"/>
+        </record>
+		
+		<record id="purchase_data_type_request_request_detail" model="cenit.data.type.line">
+            <field name="name">request_detail</field>
+			<field name="line_type">field</field>
+			<field name="value">request_detail</field>
+			<field name="data_type_id" ref="purchase_data_type_request"/>
+        </record>
+		
+		<!-- Invoice -->
+        
+        <record id="data_type_account_in_invoice" model="cenit.data.type">
+            <field name="name">invoice</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'account.invoice')]" />
+        </record>
+		
+		<record id="data_type_account_in_invoice_name" model="cenit.data.type.line">
+            <field name="name">flow</field>
+			<field name="line_type">field</field>
+			<field name="value">flow</field>
+			<field name="primary" eval="True"/>
+			<field name="data_type_id" ref="data_type_account_in_invoice"/>
+        </record>		
+		<record id="data_type_account_in_invoice_status" model="cenit.data.type.line">
+            <field name="name">status</field>
+			<field name="line_type">field</field>
+			<field name="value">status</field>
+			<field name="data_type_id" ref="data_type_account_in_invoice"/>
+        </record>
+        
+        <record id="data_type_account_in_invoice_type" model="cenit.data.type.line">
+            <field name="name">type</field>
+			<field name="line_type">field</field>
+			<field name="value">type</field>
+			<field name="data_type_id" ref="data_type_account_in_invoice"/>
+        </record>
+
+		<record id="data_type_account_in_invoice_currency" model="cenit.data.type.line">
+            <field name="name">currency_id</field>
+			<field name="line_type">reference</field>
+			<field name="value">currency</field>
+			<field name="reference_id" ref="market_product.data_type_currency" />
+			<field name="data_type_id" ref="data_type_account_in_invoice"/>
+        </record>
+		
+		<record id="data_type_account_in_invoice_note" model="cenit.data.type.line">
+            <field name="name">comment</field>
+			<field name="line_type">field</field>
+			<field name="value">comment</field>
+			<field name="data_type_id" ref="data_type_account_in_invoice"/>
+        </record>
+		
+		<record id="data_type_account_in_invoice_partner" model="cenit.data.type.line">
+            <field name="name">partner_id</field>
+			<field name="line_type">model</field>
+			<field name="value">supplier_address</field>
+			<field name="line_cardinality">2one</field>
+			<field name="reference_id" ref="market_product.data_type_res_partner" />
+			<field name="data_type_id" ref="data_type_account_in_invoice"/>
+        </record>
+		
+		<record id="data_type_account_in_invoice_billing_address" model="cenit.data.type.line">
+            <field name="name">billing_address</field>
+			<field name="line_type">field</field>
+			<field name="value">billing_address</field>
+			<field name="data_type_id" ref="data_type_account_in_invoice"/>
+        </record>
+		
+		<record id="data_type_account_in_invoice_line_items" model="cenit.data.type.line">
+            <field name="name">line_items</field>
+			<field name="line_type">field</field>
+			<field name="value">line_items</field>
+			<field name="data_type_id" ref="data_type_account_in_invoice"/>
+        </record>
+		   
+    </data>
+</openerp>

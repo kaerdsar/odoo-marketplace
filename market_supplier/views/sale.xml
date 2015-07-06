@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+		<!-- Quotations -->
+		
+		<record id="market_quotation_action" model="ir.actions.act_window">
+            <field name="name">Quotations</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','in',('draft','sent','cancel'))]</field>
+            <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+			<field name="context">{'commodity_environment': True}</field>
+        </record>
+		
+        <menuitem id="market_quotation_menu" parent="market_supplier_menu" action="market_quotation_action" sequence="8" />
+		
+		<!-- Sale Orders -->
+		
+		<record id="market_sale_orders_action" model="ir.actions.act_window">
+            <field name="name">Sale Orders</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="sale.view_sales_order_filter"/>
+            <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
+			<field name="context">{'commodity_environment': True}</field>
+        </record>
+		
+        <menuitem id="market_sale_order_menu" parent="market_supplier_menu" action="market_sale_orders_action" sequence="9" />
+    	
+		<record id="supplier_view_order_form" model="ir.ui.view">
+            <field name="name">supplier.sale.order.form</field>
+            <field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+            	<!-- Buttons -->
+            	<button name="action_quotation_send" states="draft" position="replace">
+            		<button name="action_quotation_send" string="Send to Partner" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
+				</button>
+				<button name="action_quotation_send" states="sent,progress,manual" position="replace">
+					<button name="action_quotation_send" string="Send to Partner" type="object" states="sent,to_approve,progress,manual" groups="base.group_user"/>
+				</button>
+				<button name="action_button_confirm" states="sent" position="replace">
+                    <button name="action_button_confirm" states="to_approve" string="Confirm Sale" class="oe_highlight" type="object" groups="base.group_user" />
+					<button name="action_button_confirm" attrs="{'invisible': ['|', ('internal_flow', '=', True), ('state', '!=', 'sent')]}" string="Confirm Sale" class="oe_highlight" type="object" groups="base.group_user" />
+				</button>
+				<button name="print_quotation" position="replace">
+				</button>
+				<button name="print_quotation" position="replace">
+				</button>
+                <!-- Buttons Icons -->
+                <xpath expr="//h1" position="before">
+                    <div class="oe_right oe_button_box" name="buttons">
+                        <button type="object" string="Commercial Inv."
+                            name="get_commercial_invoice"
+                            class="oe_stat_button"
+                            icon="fa-building"
+                            attrs="{'invisible': [('state', 'not in', ['progress', 'done'])]}">
+                        </button>
+                    </div>
+                </xpath>
+				<!-- Warning -->
+				<sheet position="before">
+            		<field name="to_send" invisible="1"/>
+            		<div class="oe_form_box_info oe_text_center" attrs="{'invisible': [('to_send', '=', False)]}">
+                        <p><strong>
+                            Warning: You have changed the status of this document without notifying your partner. To notify your partner please use the Send to Partner option.
+                        </strong></p>
+                    </div>
+				</sheet>
+				<!-- Fields -->
+				<field name="payment_term" position="replace">
+					<field name="payment_term" />
+				</field>
+				<field name="partner_id" position="before" >
+					<field name="publish_date" readonly="1"/>
+                    <field name="internal_flow" invisible="1"/>
+				</field>
+			</field>
+		</record>
+		
+		<record id="supplier_view_quotation_tree" model="ir.ui.view">
+            <field name="name">supplier.view.quotation.tree</field>
+            <field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_quotation_tree" />
+            <field name="arch" type="xml">
+				<field name="state" position="after" >
+					<field name="publish_date"/>
+				</field>
+			</field>
+		</record>
+		
+		<record id="supplier_view_order_tree" model="ir.ui.view">
+            <field name="name">supplier.view.order.tree</field>
+            <field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_tree" />
+            <field name="arch" type="xml">
+				<field name="state" position="after" >
+					<field name="publish_date"/>
+				</field>
+			</field>
+		</record>
+		
+		<record id="sale.action_orders" model="ir.actions.act_window">
+			<field name="context">{}</field>
+        </record>
+		
+		<record id="sale.action_quotations" model="ir.actions.act_window">
+			<field name="context">{}</field>
+        </record>
+		
+		<!-- Workflow -->
+		
+		<record id="act_to_approve" model="workflow.activity">
+            <field name="wkf_id" ref="sale.wkf_sale"/>
+            <field name="name">to_approve</field>
+            <field name="kind">function</field>
+            <field name="action">action_approve()</field>
+        </record>
+		
+		<record id="sale.trans_sent_router" model="workflow.transition">
+            <field name="act_from" ref="sale.act_sent"/>
+            <field name="act_to" ref="sale.act_router"/>
+            <field name="signal">order_confirm</field>
+        </record>
+        
+        <record id="trans_sent_to_approve" model="workflow.transition">
+            <field name="act_from" ref="sale.act_sent"/>
+            <field name="act_to" ref="act_to_approve"/>
+            <field name="signal">order_to_approve</field>
+        </record>
+		
+		<record id="trans_to_approve_router" model="workflow.transition">
+            <field name="act_from" ref="act_to_approve"/>
+            <field name="act_to" ref="sale.act_router"/>
+            <field name="signal">order_confirm</field>
+        </record>
+
+    </data>
+</openerp>

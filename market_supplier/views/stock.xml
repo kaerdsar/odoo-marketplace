@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+				
+		<record id="market_supplier_deliveries_action" model="ir.actions.act_window">
+            <field name="name">Deliveries</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="context">{'commodity_environment': True}</field>
+        </record>
+
+		<menuitem id="market_supplier_deliveries_menu" parent="market_supplier_menu" action="market_supplier_deliveries_action" sequence="10" />
+		
+        <record id="commercial_invoice_picking_form" model="ir.ui.view">
+            <field name="name">commercial.invoice.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="market_product.market_view_picking_forme"/>
+            <field name="arch" type="xml">
+				<!-- Buttons Icons -->
+                <xpath expr="//h1" position="before">
+                    <div class="oe_right oe_button_box" name="buttons">
+                        <button type="object" string="Commercial Inv."
+                            name="get_commercial_invoice"
+                            class="oe_stat_button"
+                            icon="fa-building"
+                            attrs="{'invisible': [('state', 'not in', ['done'])]}">
+                        </button>
+                    </div>
+                </xpath>
+			</field>
+		</record>
+        
+    </data>
+</openerp>

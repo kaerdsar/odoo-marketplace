@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+	
+	<t t-extend="GraphWidget">
+        <t t-jquery=".graph_mode_selection" t-operation="replace"></t>
+		<t t-jquery=".graph_heatmap" t-operation="replace"></t>
+		<t t-jquery=".graph_options_selection" t-operation="replace"></t>
+    </t>
+
+</template>

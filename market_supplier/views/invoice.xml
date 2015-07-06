@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+        <!-- Account Invoice -->
+        
+		<record id="commodity_invoice_form" model="ir.ui.view">
+            <field name="name">commodity.invoice.form</field>
+            <field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+            	<!-- Buttons -->
+            	<button name="action_invoice_sent" class="oe_highlight" position="attributes">
+            		<attribute name="string">Send to Partner</attribute>
+                    <attribute name="attrs">{'invisible':['|',('sent','=',True), ('state', '=', 'open')]}</attribute>
+				</button>
+				<button name="action_invoice_sent" position="attributes">
+            		<attribute name="string">Send to Partner</attribute>
+				</button>
+				<button name="invoice_print" position="replace">
+				</button>
+				<!-- Warning -->
+				<sheet position="before">
+            		<field name="to_send" invisible="1"/>
+            		<div class="oe_form_box_info oe_text_center" attrs="{'invisible': [('to_send', '=', False)]}">
+                        <p><strong>
+                            Warning: You have changed the status of this document without notifying your partner. To notify your partner please use the Send to Partner option.
+                        </strong></p>
+                    </div>
+				</sheet>
+                <field name="origin" position="before" >
+                    <field name="flow" readonly="1" />
+                </field>
+			</field>
+		</record>
+        
+        <!-- Commercial Invoice -->
+        
+        <record id="commercial_invoice_tree" model="ir.ui.view">
+            <field name="name">commercial.invoice.tree</field>
+            <field name="model">commercial.invoice</field>
+            <field name="arch" type="xml">
+                <tree string="Commercial Invoice">
+                    <field name="partner_id" groups="base.group_user"/>
+                    <field name="date_invoice"/>
+                    <field name="reference" invisible="1"/>
+                    <field name="name" invisible="1"/>
+                    <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                    <field name="user_id" string="Responsible"/>
+                    <field name="origin"/>
+                    <field name="currency_id" groups="base.group_multi_currency"/>
+                    <field name="amount_total" sum="Total Amount"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="commercial_invoice_form" model="ir.ui.view">
+            <field name="name">commercial.invoice.form</field>
+            <field name="model">commercial.invoice</field>
+            <field name="arch" type="xml">
+                <form string="Commercial Invoice">
+                <header>
+                    <button name="action_commercial_invoice_send" type="object" string="Send by Email" class="oe_highlight" groups="base.group_user"/>
+                </header>
+                <sheet string="Commercial Invoice">
+                    <h1>
+                        <label string="Commercial Invoice " />
+                        <field name="name" readonly="1" class="oe_inline"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field string="Customer" name="partner_id"
+                                context="{'search_default_customer':1, 'show_address': 1}"
+                                options='{"always_reload": True}'
+                                domain="[('customer', '=', True)]"/>
+                        </group>
+                        <group>
+                            <field name="date_invoice"  />
+                            <field name="origin"  />
+                            <label for="currency_id" groups="base.group_multi_currency"/>
+                            <div groups="base.group_multi_currency">
+                                <field name="currency_id" class="oe_inline"/>
+                            </div>
+                        </group>
+                    </group>
+                    <field name="sent" invisible="1"/>
+                    <notebook colspan="4">
+                        <page string="Invoice Lines">
+                            <field name="invoice_lines" nolabel="1" widget="one2many_list" >
+                                <tree string="Invoice Lines" editable="bottom">
+                                    <field name="product_id" />
+                                    <field name="name"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="quantity"/>
+                                    <!--<field name="uos_id" groups="product.group_uom" />-->
+                                    <field name="price_unit"/>
+                                    <field name="discount" groups="sale.group_discount_per_so_line"/>
+                                    <field name="price_subtotal"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="amount_total" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                            <div class="oe_clear">
+                                <label for="comment"/>
+                            </div>
+                            <field name="comment" class="oe_inline" placeholder="Additional notes..."/>
+                        </page>
+                        <page string="Shipping" >
+                            <group>
+                                <group>
+                                    <!--<field name="incoterm" />-->
+                                    <field name="mode_of_transport" />
+                                    <field name="carrier" />
+                                    <field name="mode_of_payment" />
+                                    <field name="awb_bl_number" />
+                                </group>
+                                <group>
+                                    <field name="shipping_date" />
+                                    <field name="city_of_origin" />
+                                    <field name="departure_port" />
+                                    <field name="arrival_port" />
+                                    <field name="destination_city" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+		
+		<record id="action_invoice_tree2" model="ir.actions.act_window">
+            <field name="name">Invoices</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','=','in_invoice')]</field>
+            <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice', 'journal_type': 'purchase'}</field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to record a new supplier invoice.
+              </p><p>
+                You can control the invoice from your supplier according to
+                what you purchased or received. Odoo can also generate
+                draft invoices automatically from purchase orders or receipts.
+              </p>
+            </field>
+        </record>
+        <menuitem action="action_invoice_tree2" id="menu_action_invoice_tree2" parent="market_supplier_menu" sequence="11"/>
+    </data>
+</openerp>

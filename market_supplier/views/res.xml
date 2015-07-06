@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+        <record id="market_catalog_partners_customers_action" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban</field>
+			<field name="domain">[('customer', '=', True)]</field>
+			<field name="context">{'catalog_db': 'db_master'}</field>
+        </record>
+		
+        <!--<menuitem id="market_catalog_suppliers" parent="market_catalog" action="market_catalog_partners_customers_action" sequence="2"/>-->
+
+    </data>
+</openerp>

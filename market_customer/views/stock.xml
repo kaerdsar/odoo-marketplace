@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+				
+		<record id="market_customer_deliveries_action" model="ir.actions.act_window">
+            <field name="name">Deliveries</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="context">{'commodity_environment': True}</field>
+        </record>
+
+		<menuitem id="market_customer_deliveries_menu" parent="market_customer_menu" action="market_customer_deliveries_action" sequence="10" />
+		
+    </data>
+</openerp>

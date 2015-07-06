@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+		<!-- Market Graphs -->
+		
+        <record id="market_product.action_market_usda_data" model="ir.actions.act_window">
+			<field name="context">{'catalog_db': 'db_master'}</field>
+        </record>
+		
+		<record id="market_product.action_commodity_usda_data" model="ir.actions.act_window">
+			<field name="context">{'catalog_db': 'db_master'}</field>
+        </record>
+        
+        <record id="market_product.action_commodity_graph" model="ir.actions.act_window">
+			<field name="context">{'catalog_db': 'db_master'}</field>
+        </record>
+		
+		<!-- Menu -->
+		
+		<menuitem id="market_supplier_menu" name="Supplier Market" parent="market_product.menu_markets" groups="base.group_sale_manager" sequence="3"/>
+
+    </data>
+</openerp>

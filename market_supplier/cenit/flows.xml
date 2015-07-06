@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	
+	<data>
+
+		<!-- Send Flows -->
+
+		<record id="client_flow_send_sales" model="cenit.flow">
+			<field name="name">Send Order</field>
+			<field name="root">order</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'sale.order')]" />
+			<field name="execution">only_manual</field>
+			<field name="purpose">send</field>
+			<field name="method">local_post</field>
+		</record>
+		
+		<record id="client_flow_send_product" model="cenit.flow">
+			<field name="name">Send Product</field>
+			<field name="root">product</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'product.template.commodity')]" />
+			<field name="execution">only_manual</field>	
+			<field name="purpose">send</field>
+			<field name="method">local_post</field>		
+		</record>
+		
+		<record id="client_flow_send_out_invoice" model="cenit.flow">
+			<field name="name">Send Out Invoice</field>
+			<field name="root">invoice</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'account.invoice')]" />
+			<field name="execution">only_manual</field>
+			<field name="purpose">send</field>
+			<field name="method">local_post</field>
+		</record>
+		   
+		<!-- Receive Flows -->
+		
+		<record id="client_flow_add_sales" model="cenit.flow">
+			<field name="name">Add Order</field>
+			<field name="root">order</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'sale.order')]" />
+			<field name="execution">on_create</field>
+			<field name="purpose">receive</field>
+		</record>
+		
+		<record id="client_flow_add_out_invoice" model="cenit.flow">
+			<field name="name">Add Out Invoice</field>
+			<field name="root">invoice</field>
+			<field name="model_id" model="ir.model" search="[('model', '=', 'account.invoice')]" />
+			<field name="execution">on_create</field>
+			<field name="purpose">receive</field>
+			<field name="method">local_post</field>
+		</record>
+		  
+    </data>
+</openerp>

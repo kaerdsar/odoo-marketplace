@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+	
+	<!-- Flows -->
+	
+	<record id="view_market_b2b_flow_tree" model="ir.ui.view">
+        <field name="name">market.b2b.flow.tree</field>
+        <field name="model">b2b.flow</field>
+        <field name="arch" type="xml">
+            <tree string="Requests" create="false" edit="false" delete="false">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="last_send_date"/>
+				<field name="last_receive_date"/>
+            </tree>
+      	</field>
+    </record>
+    
+    <record id="view_market_b2b_flow_form" model="ir.ui.view">
+        <field name="name">view.market.b2b.flow.form</field>
+        <field name="model">b2b.flow</field>
+        <field name="arch" type="xml">
+            <form string="Flow" create='false' edit='false' delete='false'>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="partner_id" />
+                        </group>
+                        <group>
+                            <field name="last_send_date" />
+                            <field name="last_receive_date" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Transactions">
+                            <field name="transactions" >
+                                <tree string="Transactions" >
+                                    <field name="model" />
+                                    <field name="name" />
+                                    <field name="origin" />
+                                    <field name="state" />
+                                    <field name="date" />
+                                    <field name="action" />
+                                </tree>
+                            </field>
+                        </page>	
+                    </notebook>						
+                </sheet>
+            </form>
+        </field>
+    </record>
+	
+	<record id="market_b2b_flows_action" model="ir.actions.act_window">
+        <field name="name">Flows</field>
+        <field name="res_model">b2b.flow</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>            
+    </record>
+	
+    <menuitem id="market_b2b_flows_menu" parent="market_b2b" action="market_b2b_flows_action" sequence="1"/>
+	
+    
+
+    </data>
+</openerp>

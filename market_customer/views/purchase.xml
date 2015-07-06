@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<record id="base.menu_purchase_root" model="ir.ui.menu">
+			<field name="sequence">2</field>
+		</record>
+    	
+		<record id="customer_purchase_order_form" model="ir.ui.view">
+            <field name="name">customer.purchase.order.form</field>
+            <field name="model">purchase.order</field>
+			<field name="inherit_id" ref="market_purchase.reserva_purchase_order_form_view" />
+            <field name="arch" type="xml">
+            	<button name="wkf_send_rfq" states="draft" position="replace">
+            		<button name="wkf_send_rfq" states="draft" string="Send to Partner" type="object" context="{'send_rfq':True}" class="oe_highlight"/>
+				</button>
+				<button name="wkf_send_rfq" states="sent" position="replace">
+					<button name="wkf_send_rfq" states="bid,sent" string="Send to Partner" type="object" context="{'send_rfq':True}"/>
+				</button>
+				<button name="wkf_send_rfq" states="approved" position="replace">
+					<button name="wkf_send_rfq" states="confirmed,approved" string="Send to Partner" type="object" context="{'send_rfq':False}"/>
+				</button>
+				<button name="purchase_approve" position="replace">
+                    <button name="purchase_approve" attrs="{'invisible': ['|', ('internal_flow', '=', True), ('state', '!=', 'confirmed')]}" string="Approve Order" class="oe_highlight" groups="purchase.group_purchase_manager"/>
+				</button>
+				<button name="print_quotation" position="replace">
+				</button>
+				<button name="print_quotation" position="replace">
+				</button>
+				<field name="partner_id" position="before" >
+					<field name="publish_date" readonly="1"/>
+                    <field name="internal_flow" invisible="1"/>
+                    <field name="commodity_environment" invisible="1" />
+				</field>
+				<!-- Warning -->
+				<sheet position="before">
+            		<field name="to_send" invisible="1"/>
+            		<div class="oe_form_box_info oe_text_center" attrs="{'invisible': [('to_send', '=', False)]}">
+                        <p><strong>
+                            Warning: You have changed the status of this document without notifying your partner. To notify your partner please use the Send to Partner option.
+                        </strong></p>
+                    </div>
+				</sheet>
+				<!-- Product --> 
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="context">{'commodity_environment': context.get('commodity_environment')}</attribute>
+                </xpath>
+				<xpath expr="//tree[@string='Purchase Order Lines']/field[@name='product_tmpl_id']" position="attributes">
+                    <attribute name="context">{'seller_id': parent.partner_id, 'commodity_environment': context.get('commodity_environment')}</attribute>
+                </xpath> 
+			</field>
+		</record>
+		
+		<record id="customer_purchase_order_tree" model="ir.ui.view">
+            <field name="name">customer.purchase.order.tree</field>
+            <field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_tree" />
+            <field name="arch" type="xml">
+				<field name="amount_untaxed" position="replace" >
+				</field>
+				<field name="state" position="after" >
+					<field name="publish_date"/>
+				</field>
+			</field>
+		</record>
+		
+		<!-- Requests for Quotation -->
+		
+		<record id="market_request_for_quotation_action" model="ir.actions.act_window">
+            <field name="name">Requests for Quotation</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[('state','in',('draft','sent','bid','cancel', 'confirmed'))]</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+			<field name="context">{'commodity_environment': True}</field>
+        </record>
+		
+        <menuitem id="market_request_for_quotation_menu" parent="market_customer_menu" action="market_request_for_quotation_action" sequence="3" />
+		
+		<!-- Purchase Orders -->
+		
+		<record id="market_purchase_orders_action" model="ir.actions.act_window">
+            <field name="name">Purchase Orders</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[('state','not in',('draft','sent','bid', 'confirmed'))]</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+			<field name="context">{'commodity_environment': True}</field>
+        </record>
+		
+        <menuitem id="market_purchase_orders_menu" parent="market_customer_menu" action="market_purchase_orders_action" sequence="4" />
+
+    </data>
+</openerp>

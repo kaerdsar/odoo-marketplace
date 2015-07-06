@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="seq_type_b2b_flow" model="ir.sequence.type">
+            <field name="name">B2B Flow</field>
+            <field name="code">b2b.flow</field>
+        </record>
+
+        <record id="seq_b2b_flow" model="ir.sequence">
+            <field name="name">B2B Flow</field>
+            <field name="code">b2b.flow</field>
+            <field name="prefix">FLOW</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</openerp>

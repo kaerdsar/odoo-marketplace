@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<record id="market_view_picking_forme" model="ir.ui.view">
+            <field name="name">market.view.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock_account.view_picking_inherit_form2"/>
+            <field name="arch" type="xml">
+				<button name="do_enter_transfer_details" position="before" >
+					<button name="action_picking_send" type="object" string="Send to Partner" groups="base.group_user" />
+				</button>
+                <button name="do_print_picking" position="replace" >
+                </button>
+				<!-- Warning -->
+				<sheet position="before">
+            		<field name="to_send" invisible="1"/>
+            		<div class="oe_form_box_info oe_text_center" attrs="{'invisible': [('to_send', '=', False)]}">
+                        <p><strong>
+                            Warning: You have changed the status of this document without notifying your partner. To notify your partner please use the Send to Partner option.
+                        </strong></p>
+                    </div>
+				</sheet>
+				<field name="state" position="attributes">
+					<attribute name="statusbar_visible">assigned,done</attribute>
+				</field>
+				<page string="Products" position="attributes">
+					<attribute name="invisible">context.get('commodity_environment', False)</attribute>
+				</page>
+				<page string="Operations" position="attributes">
+					<attribute name="attrs"></attribute>
+				</page>
+				<xpath expr="//notebook/page[@string='Operations']/field/tree/field[@name='product_qty']" position="after">
+					<field name="ordered_quantity" readonly="1"/>
+					<field name="picking_type_code" invisible="1" />
+					<field name="shipped_quantity" attrs="{'readonly': [('picking_type_code', '=', 'incoming')]}"/>
+            		<field name="received_quantity" attrs="{'readonly': [('picking_type_code', '=', 'outgoing')]}"/>
+				</xpath>
+				<xpath expr="//notebook/page[@string='Operations']/field/tree/field[@name='product_qty']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//notebook/page[@string='Operations']/field/tree/field[@name='location_id']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//notebook/page[@string='Operations']/field/tree/field[@name='location_dest_id']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="unread_bold_vpicktree" model="ir.ui.view">
+			<field name="name">unread.bolf.vpicktree</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+			<field name="arch" type="xml">
+				<tree string="Picking list" position="attributes">
+					<attribute name="fonts">bold:message_unread==True</attribute>
+				</tree>
+				<field name="name" position="before">
+					<field name="message_unread" invisible="1"/>	
+				</field>
+				<field name="location_dest_id" position="replace">
+				</field>
+				<field name="backorder_id" position="replace">
+					<field name="publish_date" />
+				</field>
+			</field>
+		</record> 
+
+		<!-- Wizard Create Invoice -->
+		
+		<record id="reserva_view_stock_invoice_onshipping" model="ir.ui.view">
+            <field name="name">Stock Invoice Onshipping</field>
+            <field name="model">stock.invoice.onshipping</field>
+			<field name="inherit_id" ref="stock_account.view_stock_invoice_onshipping" />
+            <field name="arch" type="xml">
+            	<field name="journal_id" position="attributes">
+            		<attribute name="invisible">1</attribute>
+				</field>
+				<field name="group" position="attributes">
+            		<attribute name="invisible">1</attribute>
+				</field>
+              	<xpath expr="//form[@string='Create invoice']/group" position="after">
+              		<group>
+              			<field name="quantity_ids" nolabel="1">
+              				<tree string="Quantities to Invoice" create="false" editable="bottom">
+              					<field name="product_id" readonly="1"/>
+								<field name="quantity" />
+							</tree>
+						</field>
+					</group>
+			  	</xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
