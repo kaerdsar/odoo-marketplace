@@ -31,6 +31,7 @@
     'depends': ['market_base', 'sale_stock'],
     'data': [
         'security/ir.model.access.csv',
+        'data/data.xml',
         'views/market.xml',
         'views/product.xml',
         'views/res.xml',

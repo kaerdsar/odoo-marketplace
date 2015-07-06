@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data >
+        
+        <!-- Connection Role -->
+        
+        <record id="market_connection_role_partner" model="cenit.connection.role">
+            <field name="name">Partner</field>
+        </record>
+    	
+		<!-- Library -->
+        
+        <record id="market_library_market" model="cenit.library">
+            <field name="name">Market</field>
+        </record>
+        
+        <!-- Schemas -->
+		
+		<record id="market_schema_category" model="cenit.schema">
+			<field name="uri">Category</field>
+            <field name="library" ref="market_library" />
+        </record>
+        
+        <record id="market_schema_attribute" model="cenit.schema">
+			<field name="uri">Attribute</field>
+            <field name="library" ref="market_library" />
+        </record>
+        
+        <record id="market_schema_attribute_value" model="cenit.schema">
+			<field name="uri">Attribute Value</field>
+            <field name="library" ref="market_library" />
+        </record>
+        
+        <record id="market_schema_product" model="cenit.schema">
+			<field name="uri">Product</field>
+            <field name="library" ref="market_library" />
+        </record>
+        
+
+
+        <!-- Data Types -->        
+        
+        <!-- Category -->
+
+        <record id="market_data_type_category" model="cenit.data_type">
+			<field name="name">Category</field>
+            <field name="library" ref="market_library_market" />
+            <field name="schema" ref="market_schema_category" />
+            <field name="model" model="ir.model" search="[('model', '=', 'product.category')]" />
+        </record>
+        
+        <record id="market_data_type_category_name" model="cenit.data.type.line">
+            <field name="data_type" ref="market_data_type_category" />
+			<field name="name">name</field>
+            <field name="value">name</field>
+            <field name="line_type">field</field>
+            <field name="primary">1</field>
+        </record>
+        
+        <record id="market_data_type_category_parent" model="cenit.data.type.line">
+            <field name="data_type" ref="market_data_type_category" />
+			<field name="name">parent_id</field>
+            <field name="value">parent</field>
+            <field name="line_type">reference</field>
+            <field name="reference" ref="market_data_type_category" />
+            <field name="line_cardinality">2one</field>
+        </record>
+        
+        <!-- Attribute -->
+        
+        <!-- Attribute Value -->
+        
+        <!-- Product -->
+           
+    </data>
+</openerp>

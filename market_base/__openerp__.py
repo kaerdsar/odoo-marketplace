@@ -32,6 +32,7 @@
                 'product_variants', 'odoo_connector_marketplace'],
     'data': [
         'security/ir.model.access.csv',
+        'data/data.xml',
         'edi/stock_picking_data.xml',
         'views/product.xml',
         'views/stock.xml',

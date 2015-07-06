@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data >
+        
+        <!-- Connection Role -->
+        
+        <record id="market_connection_role_client" model="cenit.connection.role">
+            <field name="name">Client</field>
+        </record>
+    	
+		<!-- Flows -->
+        
+        <record id="market_flow_send_category" model="cenit.flow">
+            <field name="name">Send Category</field>
+            <field name="event" model="cenit.event" search="[('type_', '=', 'only_manual')]" />
+            <field name="format_">application/json</field>
+            <field name="schema" ref="market_base.market_schema_category" />
+            <field name="data_type" ref="market_base.market_data_type_category" />
+            <field name="connection_role" ref="market_connection_role_client" />
+        </record>
+        
+           
+    </data>
+</openerp>

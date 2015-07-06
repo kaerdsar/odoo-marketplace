@@ -31,6 +31,7 @@
     'depends': ['website', 'market_base', 'saas_server'],
     'data': [
         'data/sequence.xml',
+        'data/data.xml',
         'views/market.xml',
         'views/templates.xml'
     ],
