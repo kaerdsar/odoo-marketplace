@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+        <template id="MYSITE_layout" inherit_id="web.layout" name="MYSITE layout" priority="17">
+    		<xpath expr="//head//title" position="replace">
+        		<title>Reserva</title>
+    		</xpath>
+            <xpath expr="//head//link" position="after">
+        		<link rel="shortcut icon" href="/market_web/static/img/ico.png" type="image/x-icon"/>
+    		</xpath>
+		</template>
+		<template id="menu_secondary" inherit_id="web.menu_secondary" name="inherit menu_secondary">
+            <xpath expr="//div[@class='oe_footer']" position="replace">	
+            <div class="oe_footer">
+                Powered by <a href="http://www.onreserva.com" target="_blank"><span>Reserva</span></a>
+            </div>
+	    	</xpath>
+        </template>
+        <template id="layout_zopim_js" inherit_id="web.webclient_bootstrap" name="add zipim to main layout">
+			<xpath expr="//table[@class='oe_webclient']" position="after">
+				<!--Start of Zopim Live Chat Script-->
+				<script type="text/javascript">
+					window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+					d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+					_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+					$.src='//v2.zopim.com/?2lzokIXhMAWhzoQGibokKI7UwxrG88e2';z.t=+new Date;$.
+					type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+				</script>
+				<!--End of Zopim Live Chat Script-->
+				 <script>
+				    $zopim(function() {
+				    $zopim.livechat.theme.setColors({badge: '#4C4C4C', primary: '#AEB9BD'});
+				    $zopim.livechat.theme.reload(); // apply new theme settings
+				    });
+			    </script>
+			</xpath>		
+		</template> 	
+  </data>
+</openerp>

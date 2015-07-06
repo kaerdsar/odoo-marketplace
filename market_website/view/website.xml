@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+  		<template id="reserva_footer_copyright" inherit_id="website.layout_footer_copyright">
+		    <xpath expr="//div[@class='container mt16 mb8']" position="replace">
+		        <div class="container mt16 mb8">
+		            <div class="pull-left text-muted" itemscope="itemscope" itemtype="http://schema.org/Organization">
+		                Copyright &amp;copy; <span t-field="res_company.name" itemprop="name">Company name</span>
+		            </div>
+		        </div>
+		    </xpath>
+		</template>
+        <template id="MYSITE_layout" inherit_id="website.layout" name="MYSITE layout" priority="17">
+    		<xpath expr="//head//link" position="after">
+        		<link rel="shortcut icon" href="/market_website/static/img/ico.png" type="image/x-icon"/>
+        		<link rel='stylesheet' href='/market_website/static/src/css/website.css' t-ignore="true"/>
+    		</xpath>
+		</template>
+		
+     	<template id="zopim_layout" inherit_id="website.layout" name="add zipim to main layout">
+			<xpath expr="//main" position="after">
+				<!--Start of Zopim Live Chat Script-->
+				<script type="text/javascript">
+					window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+					d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+					_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+					$.src='//v2.zopim.com/?2lzokIXhMAWhzoQGibokKI7UwxrG88e2';z.t=+new Date;$.
+					type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+				</script>
+				<!--End of Zopim Live Chat Script-->
+			    <script>
+				    $zopim(function() {
+				    $zopim.livechat.theme.setColors({badge: '#4C4C4C', primary: '#AEB9BD'});
+				    $zopim.livechat.theme.reload(); // apply new theme settings
+				    });
+			    </script>
+			</xpath>		
+		</template> 	
+  </data>
+</openerp>
