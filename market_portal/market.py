@@ -41,13 +41,14 @@ class MarketData(models.TransientModel):
             ctx = {'partner_db': db}
             for x in self.model_ids:
                 domain = [
-                    ('model_id.model', '=', x.model), ('purpose', '=', 'send')
+                    ('data_type.model.model', '=', x.model)
+                    #('purpose', '=', 'send')
                 ]
                 flows = flow.with_context(ctx).search(domain)
                 if flows:
                     flow_ids = [x.id for x in flows]
                     ctx.update({'user': 1})
-                    flow.pool.get('cenit.flow').send_all(self.env.cr, self.env.uid, flow_ids, ctx)
+                    self.env['cenit.flow'].with_context(ctx).send_all(flow_ids[0])
 
     def _get_default_models(self, cr, uid, context=None):
         model_ids = self.pool.get('ir.model').search(cr, uid, 
