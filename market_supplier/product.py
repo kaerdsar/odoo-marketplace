@@ -39,6 +39,31 @@ class ProductTemplate(models.Model):
     _defaults = {
         'seller_ids': _get_seller
     }
+    
+    @api.model
+    def fields_view_get(self, *args, **kwargs):
+        if self.env.user.id != SUPERUSER_ID and \
+           not self.search([('sale_ok', '=', True)]):
+            self.pull_initial_products()
+        return super(ProductTemplate, self).fields_view_get(*args, **kwargs)
+    
+    @api.model
+    def pull_initial_products(self):
+        product_ids = []
+        partner = self.env.user.partner_id
+        db = config.get('db_master')
+        registry = openerp.modules.registry.RegistryManager.get(db)
+        with registry.cursor() as cr:
+            res_user = registry['res.users']
+            user_ids = res_user.search(cr, SUPERUSER_ID,
+                                     [('partner_id.name', '=', partner.name)])
+            if user_ids:
+                user_id = user_ids[0]
+                product_template = registry['product.template']
+                product_ids = product_template.search(cr, SUPERUSER_ID,
+                                            [('product_manager', '=', user_id)])
+        for product_id in product_ids:
+            self.pull_from_catalog(product_id)
 
 
 class MarketRequest(models.Model):

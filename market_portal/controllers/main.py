@@ -13,9 +13,7 @@ from openerp.addons.website_sale.controllers.main import table_compute, QueryURL
 PPG = 20 # Products Per Page
 PPR = 4  # Products Per Row
 
-PRODUCT_FIELDS = [{'name': 'commodities', 'model': 'market.commodity'},
-                  {'name': 'varieties', 'model': 'market.variety'},
-                  {'name': 'packages', 'model': 'market.package'}]
+PRODUCT_FIELDS = []
 
 
 class WebsiteSaleSeller(http.Controller):
@@ -40,7 +38,7 @@ class WebsiteSaleSeller(http.Controller):
             except Exception, e:
                 qcontext['error'] = _(e.message)
 
-        return request.render('website_sale_seller.add_product', qcontext)
+        return request.render('market_portal.add_product', qcontext)
         
     def get_values(self, model):
         cr, uid, context = request.cr, request.uid, request.context
@@ -54,18 +52,15 @@ class WebsiteSaleSeller(http.Controller):
             'product_manager': request.uid,
             'sale_ok': True,
             'website_published': True,
-            'commodity_id': qcontext['commodity'],
-            'variety_id': qcontext['variety']
         }
-        commodity = request.registry['product.template.commodity']
+        commodity = request.registry['product.template']
         cid = commodity.create(request.cr, request.uid, cals, request.context)
         
         vals = {
-            'product_commodity_id': cid,
+            'product_tmpl_id': cid,
             'website_published': True,
-            'package': qcontext['package']
         }
-        variant = request.registry['product.commodity.variant']
+        variant = request.registry['product.product']
         variant.create(request.cr, request.uid, vals, request.context)
         
         request.cr.commit()
