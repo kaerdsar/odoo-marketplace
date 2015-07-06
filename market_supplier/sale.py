@@ -30,10 +30,6 @@ class SaleOrder(models.Model):
     _name = 'sale.order'
     _inherit = ['publish.mixin', 'sale.order']
 
-    commodity_environment = fields.Boolean(compute='_is_commodity_environment',
-                                           string='Commodity Environment',
-                                           default=False)
-
     def __init__(self, pool, cr):
         from openerp.addons.sale.sale import sale_order
         item = ('to_approve', 'Waiting Approval')
@@ -42,21 +38,13 @@ class SaleOrder(models.Model):
         return super(SaleOrder, self).__init__(pool, cr)
 
     @api.one
-    def _is_commodity_environment(self):
-        self.commodity_environment = False
-        for line in self.order_line:
-            if line.product_id.is_comodity:
-                self.commodity_environment = True
-                break
-
-    @api.one
     def check_and_publish(self):
         for line in self.order_line:
             if line.product_id and not line.product_id.published:
-                model = self.env['product.commodity.variant']
-                domain = [('product_product_id', '=', line.product_id.id)]
+                model = self.env['product.product']
+                domain = [('id', '=', line.product_id.id)]
                 objs = model.search(domain)
-                if objs and not objs[0].product_commodity_id.published:
+                if objs and not objs[0].product_id.published:
                     raise ValidationError('''You must publish the product %s
                               before send the order''' % line.product_id.name)
         return self.publish_to_partner()
@@ -72,14 +60,14 @@ class SaleOrder(models.Model):
     def action_approve(self):
         return self.write({'state': 'to_approve'})
 
-    @api.multi
+    """@api.multi
     def action_ship_create(self):
         res = super(SaleOrder, self).action_ship_create()
         for obj in self:
             if obj.commodity_environment:
                 for pick in obj.picking_ids:
                     pick.force_assign()
-        return res
+        return res"""
 
     @api.one
     def get_signup_url(self):

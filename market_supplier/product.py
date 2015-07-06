@@ -28,17 +28,6 @@ class ProductTemplate(models.Model):
     _name = 'product.template'
     _inherit = ['product.template', 'catalog.mixin']
 
-
-class ProductTemplateCommodity(models.Model):
-    _name = 'product.template.commodity'
-    _inherit = 'product.template.commodity'
-    
-    @api.multi
-    def unlink(self):
-        for obj in self:
-            obj.unpublish_from_master()
-        return super(ProductTemplateCommodity, self).unlink()
-
     def _get_seller(self, cr, uid, context=None):
         user = self.pool.get('res.users').browse(cr, uid, uid)
         supplier = {
@@ -81,17 +70,3 @@ class MarketRequestLine(models.Model):
     _name = 'market.request.line'
     _inherit = ['market.request.line', 'catalog.mixin']
 
-
-class MarketPriceByDate(models.Model):
-    _name = 'market.price.by.date'
-    _inherit = ['market.price.by.date', 'catalog.mixin']
-
-
-class FilterCommodity(models.TransientModel):
-    _name = 'filter.commodity'
-    _inherit = 'filter.commodity'
-
-    def save(self, cr, uid, ids, context=None):
-        res = super(FilterCommodity, self).save(cr, uid, ids, context)
-        res.update({'context': {'catalog_db': 'db_master'}})
-        return res

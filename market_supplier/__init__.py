@@ -25,4 +25,3 @@ import sale
 import invoice
 import stock
 import wizard
-import cenit

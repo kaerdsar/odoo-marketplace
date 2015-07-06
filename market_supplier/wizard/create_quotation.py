@@ -38,12 +38,12 @@ class RequestToQuotation(models.TransientModel):
         for x in obj.line_ids:
             if x.product_id:
                 vals = {
-                    'product_tmpl_id': x.product_id.product_product_id.product_tmpl_id.id,
-                    'product_id': x.product_id.product_product_id.id,
-                    'name': x.product_id.product_product_id.name,
+                    'product_tmpl_id': x.product_id.product_tmpl_id.id,
+                    'product_id': x.product_id.id,
+                    'name': x.product_id.name,
                     'product_uom_qty': x.request_line_id.quantity,
                     'product_uom': 1,
-                    'price_unit': x.product_id.product_product_id.lst_price,
+                    'price_unit': x.product_id.lst_price,
                     'state': 'draft'
                 }
                 lines.append((0, 0, vals))
@@ -67,13 +67,5 @@ class RequestToQuotationLine(models.TransientModel):
     _name = 'request.to.quotation.line'
 
     request_line_id = fields.Many2one('market.request.line', 'Request')
-    product_id = fields.Many2one('product.commodity.variant', 'Variant')
+    product_id = fields.Many2one('product.product', 'Variant')
     request_id = fields.Many2one('request.to.quotation', 'Request')
-
-    commodity_id = fields.Many2one(compute='_get_commodity',
-                                   comodel_name='market.commodity',
-                                   string='Commodity')
-
-    @api.one
-    def _get_commodity(self):
-        self.commodity_id = self.request_line_id.commodity_id.id

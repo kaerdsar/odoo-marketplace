@@ -28,11 +28,9 @@
     'description': """
         Market B2B Supplier
     """,
-    'depends': ['market_sale'],
+    'depends': ['market_base', 'sale_stock'],
     'data': [
         'security/ir.model.access.csv',
-        'cenit/schemas.xml',
-        'cenit/flows.xml',
         'views/market.xml',
         'views/product.xml',
         'views/res.xml',

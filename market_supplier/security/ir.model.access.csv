@@ -1,6 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_sales_account_payment_term,sales.account.payment.term,account.model_account_payment_term,base.group_sale_manager,1,1,1,1
-access_sales_product_template_commodity,market_product.product.template.commodity,market_product.model_product_template_commodity,base.group_sale_manager,1,1,1,1
-access_sales_product_commodity_variant,market_product.product.commodity.variant,market_product.model_product_commodity_variant,base.group_sale_manager,1,1,1,1
-access_market_b2b_supplier_commercial_invoice,market_b2b_supplier.commercial.invoice,market_b2b_supplier.model_commercial_invoice,base.group_sale_manager,1,1,1,1
+access_market_supplier_commercial_invoice,market_supplier.commercial.invoice,market_supplier.model_commercial_invoice,base.group_sale_manager,1,1,1,1
 access_account_tax_sales_manager,account.account.tax,account.model_account_tax,base.group_sale_manager,1,0,0,0

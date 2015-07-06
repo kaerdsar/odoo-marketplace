@@ -11,7 +11,6 @@
             <field name="view_mode">tree,form</field>
             <field name="domain">[('state','in',('draft','sent','cancel'))]</field>
             <field name="search_view_id" ref="sale.view_sales_order_filter"/>
-			<field name="context">{'commodity_environment': True}</field>
         </record>
 		
         <menuitem id="market_quotation_menu" parent="market_supplier_menu" action="market_quotation_action" sequence="8" />
@@ -25,7 +24,6 @@
             <field name="view_mode">tree,form</field>
 			<field name="search_view_id" ref="sale.view_sales_order_filter"/>
             <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
-			<field name="context">{'commodity_environment': True}</field>
         </record>
 		
         <menuitem id="market_sale_order_menu" parent="market_supplier_menu" action="market_sale_orders_action" sequence="9" />
