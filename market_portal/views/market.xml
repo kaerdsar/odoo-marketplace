@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-	<menuitem id="market_configuration" parent="market_product.menu_markets" name="Configuration" sequence="3"/>
+	<menuitem id="market_configuration" parent="market_base.menu_markets" name="Configuration" sequence="3"/>
 	
 	<!-- Categories -->
     
@@ -14,77 +14,6 @@
     </record>
 	
     <menuitem id="market_category_menu" parent="market_configuration" action="market_category_action" sequence="1"/>
-    
-    <!-- Commodities -->
-	
-	<record id="view_market_commodity_tree" model="ir.ui.view">
-        <field name="name">market.commodity.tree</field>
-        <field name="model">market.commodity</field>
-        <field name="arch" type="xml">
-            <tree string="Commodities" >
-                <field name="name"/>
-                <field name="commodityabbr"/>
-                <field name="source_market"/>
-				<field name="slug"/>
-            </tree>
-      	</field>
-    </record>
-	
-	<record id="market_commodity_action" model="ir.actions.act_window">
-        <field name="name">Commodities</field>
-        <field name="res_model">market.commodity</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>            
-    </record>
-	
-    <menuitem id="market_commodity_menu" parent="market_configuration" action="market_commodity_action" sequence="2"/>
-	
-	<!-- Varieties -->
-	
-	<record id="view_market_variety_tree" model="ir.ui.view">
-        <field name="name">market.variety.tree</field>
-        <field name="model">market.variety</field>
-        <field name="arch" type="xml">
-            <tree string="Varieties" >
-                <field name="name"/>
-                <field name="commodity_id"/>
-				<field name="slug"/>
-            </tree>
-      	</field>
-    </record>
-	
-	<record id="market_variety_action" model="ir.actions.act_window">
-        <field name="name">Varieties</field>
-        <field name="res_model">market.variety</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>            
-    </record>
-	
-    <menuitem id="market_variety_menu" parent="market_configuration" action="market_variety_action" sequence="3"/>
-	
-	<!-- Packages -->
-	
-	<record id="view_market_package_tree" model="ir.ui.view">
-        <field name="name">market.package.tree</field>
-        <field name="model">market.package</field>
-        <field name="arch" type="xml">
-            <tree string="Packages" >
-                <field name="name"/>
-                <field name="commodity_id"/>
-                <field name="weight_lb"/>
-				<field name="slug"/>
-            </tree>
-      	</field>
-    </record>
-	
-	<record id="market_package_action" model="ir.actions.act_window">
-        <field name="name">Packages</field>
-        <field name="res_model">market.package</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>            
-    </record>
-	
-    <menuitem id="market_package_menu" parent="market_configuration" action="market_package_action" sequence="4"/>
 	
 	<!-- Attributes -->
     

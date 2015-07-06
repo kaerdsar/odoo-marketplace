@@ -28,7 +28,7 @@
     'description': """
         Market B2B
     """,
-    'depends': ['website', 'market_base'],
+    'depends': ['website', 'market_base', 'saas_server'],
     'data': [
         'data/sequence.xml',
         'views/market.xml',

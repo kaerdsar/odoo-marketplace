@@ -2,13 +2,7 @@
 <openerp>
     <data>
         
-        <template id="assets_frontend" inherit_id="website.assets_frontend" name="Shop">
-          <xpath expr="." position="inside">
-              <script type="text/javascript" src="/website_sale_seller/static/src/js/add_product.js"></script>
-          </xpath>
-        </template>
-        
-        <template id="website_sale_seller.add_product" name="Add Product">
+        <template id="market_portal.add_product" name="Add Product">
             <t t-call="web.login_layout">
                 <div t-if="success" class="alert alert-success" role="alert">Product added successfully</div>
                 <div t-if="new" class="alert alert-info" role="alert">
@@ -22,41 +16,6 @@
                         <input type="text" name="name" t-att-value="name" id="name" class="form-control" placeholder="e.g. Hass Avocados" required="required" />
                     </div>
 
-                    <div t-attf-class="form-group  field-commodity">
-	                      <label class="control-label" for="commodity">Commodity</label>
-	                      <select id="commodity" name="commodity" class="form-control" required="required" >
-	                          <option value=""></option>
-	                          <t t-foreach="commodities or []" t-as="commodity">
-	                          	   <option t-att-value="commodity.id">
-                                       <t t-esc="commodity.name"/>
-                                    </option>
-	                          </t>
-	                      </select>
-	                </div>
-                    
-                    <div t-attf-class="form-group  field-variety">
-	                      <label class="control-label" for="variety">Variety</label>
-	                      <select id="variety" name="variety" class="form-control" required="required" >
-	                          <option value=""></option>
-	                          <t t-foreach="varieties or []" t-as="variety">
-	                          	   <option t-att-value="variety.id">
-                                       <t t-esc="variety.name"/>
-                                    </option>
-	                          </t>
-	                      </select>
-	                </div>
-                    
-                    <div t-attf-class="form-group  field-package">
-	                      <label class="control-label" for="package">Package</label>
-	                      <select id="package" name="package" class="form-control" required="required" >
-	                          <option value=""></option>
-	                          <t t-foreach="packages or []" t-as="package">
-	                          	   <option t-att-value="package.id">
-                                       <t t-esc="package.name"/>
-                                    </option>
-	                          </t>
-	                      </select>
-	                </div>
 
                     <p class="alert alert-danger" t-if="error">
                         <t t-esc="error"/>
