@@ -40,7 +40,7 @@ class MarketRequest(models.Model):
     ordering_date = fields.Date('Scheduled Ordering Date')
     date_end = fields.Datetime('Bid Submission Deadline')
     schedule_date = fields.Date('Scheduled Date', select=True)
-    line_ids = fields.One2many('market.request.line', 'request_id', 'Lines')
+    line_ids = fields.One2many('market.request.line', 'request', 'Lines')
     description = fields.Text('Description')
     summary = fields.Char(compute='_get_summary', string='Summary', size=255)
 

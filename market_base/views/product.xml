@@ -1,58 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
-		<!-- Product Attribute Views -->
-		
-		<record id="market_attribute_tree_view" model="ir.ui.view">
-            <field name="name">market.product.attribute.tree</field>
-            <field name="model">product.attribute</field>
-            <field name="inherit_id" ref="product.attribute_tree_view" />
-			<field name="arch" type="xml">
-				<tree string="Variant Values" position="replace">
-                    <tree string="Attributes" >
-		                <field name="name"/>
-						<field name="attribute_type" />
-						<field name="mandatory" />
-						<button name="pull_values_from_market" type="object" string="Pull Values" icon="gtk-apply" />
-		            </tree>
-                </tree>
-            </field>
-        </record>
-		
-		<record id="market_attribute_form_view" model="ir.ui.view">
-	        <field name="name">product.attribute.form</field>
-	        <field name="model">product.attribute</field>
-	        <field name="arch" type="xml">
-	            <form string="Attribute">
-		        	<header>
-		            	<button name="pull_values_from_market" type="object" string="Pull Values" class="oe_highlight"/>
-		            </header>
-		            <sheet>
-		                <group>
-		                	<field name="name" />
-		                	<field name="attribute_type" />
-		                    <field name="mandatory" />
-                            <field name="sequence" />
-                            <field name="show_in_name" />
-                            <field name="source" />
-		                </group>
-		               	<separator />
-                        <field name="value_ids" >
-                            <tree string="Values" editable="top">
-                                <field name="name" />
-                            </tree>
-                        </field>
-		            </sheet>
-	            </form>
-	        </field>
-	    </record>
-		
 		<!-- Product Template Commodity Views -->
 		
-		<record id="product_template_commodity_kanban_view" model="ir.ui.view">
-            <field name="name">product.template.commodity.kanban</field>
-            <field name="model">product.template.commodity</field>
+		<record id="product_template_market_kanban_view" model="ir.ui.view">
+            <field name="name">product.template.market.kanban</field>
+            <field name="model">product.template</field>
             <field name="arch" type="xml">
                 <kanban>
                     <field name="image_small"/>
@@ -88,9 +41,9 @@
             </field>
         </record>
 		
-		<record id="product_template_commodity_form_view" model="ir.ui.view">
-            <field name="name">product.template.commodity.form</field>
-            <field name="model">product.template.commodity</field>
+		<record id="product_template_market_form_view" model="ir.ui.view">
+            <field name="name">product.template.market.form</field>
+            <field name="model">product.template</field>
             <field name="arch" type="xml">
                 <form string="Product">
                     <field name="is_product_variant" invisible="1"/>
@@ -116,21 +69,13 @@
                             <div class="oe_title" style="width: 670px;">
 		                                
 								<div>
-								<label class="oe_edit_only" for="commodity_id" string="Commodity"/>
-                                <h1><field name="commodity_id" class="oe_inline" options="{'no_create_edit': True}"/></h1>
-								
-								<label class="oe_edit_only" for="variety_id" string="Variety"/>
-                                <h1><field name="variety_id" class="oe_inline" options="{'no_create_edit': True}" domain="[('commodity_id', '=', commodity_id)]" context="{'default_commodity_id': commodity_id}"/></h1>
-								</div>
-								
-                                <label class="oe_edit_only" for="name" string="Name"/>
-								<field name="name" />
-								
-                                <field name="categ_left" invisible="1"/>
-								<field name="categ_right" invisible="1"/>
-								
-								<label class="oe_edit_only" for="categ_id" string="Category"/>
-								<field name="categ_id" />
+									<label class="oe_edit_only" for="name" string="Name"/>
+									<h1><field name="name" /></h1>
+									
+									<label class="oe_edit_only" for="categ_id" string="Category"/>
+									<h1><field name="categ_id" /></h1>
+								</div>			
+                                
                             </div>
                         </div>
                         <notebook>
@@ -160,23 +105,10 @@
 		                        </field>
 		                    </page>	
                             <page string="Variants" >
-						 		<field name="variant_ids" nolabel="1" colspan="4" context="{'create_product_variant': True}" >
+						 		<field name="product_variant_ids" nolabel="1" colspan="4" context="{'create_product_variant': True}" >
 						 			<tree string="Variants" editable="bottom" >
-					                    <field name="default_code" invisible="1"/>			                    
-					                    <field name="attribute_value_ids" widget="many2many_tags" invisible="1" />
-										<field name="package" required="1" options="{'no_create_edit': True}" domain="[('commodity_id', '=', parent.commodity_id)]"/>
-										<field name="weight_lb" />
-										<field name="moq" />
-										<field name="size_count" />
-										<field name="incoterm" />
-										<field name="place_port" />
-										<field name="variant_price" />
-										<field name="price_per_lb" readonly="1" />
-					                    <field name="lst_price" invisible="1"/>
-										<field name="qty_available" string="Availability (lbs)" invisible="1"/>
-										<field name="virtual_available" invisible="1"/>
-					                    <field name="price" invisible="not context.get('pricelist',False)" />
-										<field name="price_extra" invisible="1"/>
+					                    <field name="default_code" />			                    
+					                    <field name="attribute_value_ids" widget="many2many_tags"  />
 					                </tree>
 								</field>
 							</page>

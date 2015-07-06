@@ -16,9 +16,9 @@
 	                </div>
 	                <group>
 	                	<group>
-	                		<field name="partner_id" />
-							<field name="country_id" />
-	                		<field name="destination_id" />
+	                		<field name="partner" />
+							<field name="country" />
+	                		<field name="destination" />
 							<field name="frequency" />
 	                	</group>
 						<group>
@@ -31,9 +31,7 @@
 	                    <page string="Lines">
 	                        <field name="line_ids" context="{'catalog_db': 'db_master'}">
 	                            <tree string="Products" editable="bottom">
-	                                <field name="commodity_id" />
-									<field name="variety_id" />
-									<field name="package_id" />
+									<field name="product" />
 	                                <field name="quantity"/>
 	                            </tree>
 	                        </field>
@@ -52,8 +50,8 @@
         <field name="arch" type="xml">
             <tree string="Requests" create="false">
                 <field name="name"/>
-                <field name="country_id"/>
-                <field name="partner_id"/>
+                <field name="country"/>
+                <field name="partner"/>
 				<field name="summary"/>
             </tree>
       	</field>

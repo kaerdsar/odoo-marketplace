@@ -58,7 +58,9 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>            
     </record>
-	
+    
+    <menuitem id="menu_markets" name="Marketplace" sequence="1" groups="base.group_user"/>
+	<menuitem id="market_b2b" name="B2B" parent="menu_markets" groups="base.group_user" sequence="2"/>
     <menuitem id="market_b2b_flows_menu" parent="market_b2b" action="market_b2b_flows_action" sequence="1"/>
 	
     

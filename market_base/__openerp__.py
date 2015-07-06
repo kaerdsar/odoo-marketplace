@@ -29,7 +29,7 @@
         Market Base
     """,
     'depends': ['product', 'stock', 'stock_account', 
-                'product_variants_extension', 'odoo_connector'],
+                'product_variants', 'odoo_connector_marketplace'],
     'data': [
         'security/ir.model.access.csv',
         'edi/stock_picking_data.xml',

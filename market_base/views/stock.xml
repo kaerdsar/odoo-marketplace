@@ -24,9 +24,6 @@
 				<field name="state" position="attributes">
 					<attribute name="statusbar_visible">assigned,done</attribute>
 				</field>
-				<page string="Products" position="attributes">
-					<attribute name="invisible">context.get('commodity_environment', False)</attribute>
-				</page>
 				<page string="Operations" position="attributes">
 					<attribute name="attrs"></attribute>
 				</page>
