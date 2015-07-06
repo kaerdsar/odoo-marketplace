@@ -38,7 +38,7 @@ class MarketData(models.TransientModel):
         flow = self.env['cenit.flow']
         dbs = self.database and [self.database] or database.get_market_dbs() 
         for db in dbs:
-            ctx = {'partner_db': db}
+            ctx = {'partner_db': db, 'send_method':'local_post'}
             for x in self.model_ids:
                 domain = [
                     ('data_type.model.model', '=', x.model)

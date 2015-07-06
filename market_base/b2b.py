@@ -127,8 +127,9 @@ class CenitFlow(models.Model):
     _name = 'cenit.flow'
     _inherit = 'cenit.flow'
     
-    def receive(self, cr, uid, root, data, context=None):
-        res = super(CenitFlow, self).receive(cr, uid, root.lower(), data, context)
+    """@api.model
+    def receive(self, model, data):
+        res = super(CenitFlow, self).receive(model, data)
         if res:
             context = context or {}
             data_type = self.find(cr, uid, root, 'receive', context)
@@ -140,7 +141,7 @@ class CenitFlow(models.Model):
                         obj = model.browse(cr, uid, obj_ids[0])
                         transaction = self.pool.get('b2b.flow.transaction')
                         transaction.register_transaction(cr, uid, obj, 'receive')
-        return res
+        return res"""
         
     def send(self, cr, uid, obj, context=None):
         res = super(CenitFlow, self).send(cr, uid, obj, context)

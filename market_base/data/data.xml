@@ -18,22 +18,22 @@
 		
 		<record id="market_schema_category" model="cenit.schema">
 			<field name="uri">Category</field>
-            <field name="library" ref="market_library" />
+            <field name="library" ref="market_library_market" />
         </record>
         
         <record id="market_schema_attribute" model="cenit.schema">
 			<field name="uri">Attribute</field>
-            <field name="library" ref="market_library" />
+            <field name="library" ref="market_library_market" />
         </record>
         
         <record id="market_schema_attribute_value" model="cenit.schema">
 			<field name="uri">Attribute Value</field>
-            <field name="library" ref="market_library" />
+            <field name="library" ref="market_library_market" />
         </record>
         
         <record id="market_schema_product" model="cenit.schema">
 			<field name="uri">Product</field>
-            <field name="library" ref="market_library" />
+            <field name="library" ref="market_library_market" />
         </record>
         
 
@@ -49,7 +49,7 @@
             <field name="model" model="ir.model" search="[('model', '=', 'product.category')]" />
         </record>
         
-        <record id="market_data_type_category_name" model="cenit.data.type.line">
+        <record id="market_data_type_category_name" model="cenit.data_type.line">
             <field name="data_type" ref="market_data_type_category" />
 			<field name="name">name</field>
             <field name="value">name</field>
@@ -57,7 +57,7 @@
             <field name="primary">1</field>
         </record>
         
-        <record id="market_data_type_category_parent" model="cenit.data.type.line">
+        <record id="market_data_type_category_parent" model="cenit.data_type.line">
             <field name="data_type" ref="market_data_type_category" />
 			<field name="name">parent_id</field>
             <field name="value">parent</field>
