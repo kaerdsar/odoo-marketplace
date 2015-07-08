@@ -30,6 +30,8 @@
     """,
     'depends': ['website', 'market_base', 'saas_server'],
     'data': [
+	'security/security.xml',
+	'security/ir.model.access.csv',
         'data/sequence.xml',
         'data/data.xml',
         'views/market.xml',

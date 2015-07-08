@@ -19,6 +19,24 @@
             <field name="connection_role" ref="market_connection_role_master" />
         </record>
         
+        <record id="market_flow_receive_product" model="cenit.flow">
+            <field name="name">Receive Product</field>
+            <field name="event" model="cenit.event" search="[('type_', '=', 'only_manual')]" />
+            <field name="format_">application/json</field>
+            <field name="schema" ref="market_base.market_schema_product" />
+            <field name="data_type" ref="market_base.market_data_type_product" />
+            <field name="connection_role" ref="market_connection_role_master" />
+        </record>
+        
+        <record id="market_flow_receive_attribute" model="cenit.flow">
+            <field name="name">Receive Attribute</field>
+            <field name="event" model="cenit.event" search="[('type_', '=', 'only_manual')]" />
+            <field name="format_">application/json</field>
+            <field name="schema" ref="market_base.market_schema_attribute" />
+            <field name="data_type" ref="market_base.market_data_type_attribute" />
+            <field name="connection_role" ref="market_connection_role_master" />
+        </record>
+        
            
     </data>
 </openerp>

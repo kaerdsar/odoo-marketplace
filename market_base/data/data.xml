@@ -67,10 +67,37 @@
         </record>
         
         <!-- Attribute -->
+        <record id="market_data_type_attribute" model="cenit.data_type">
+			<field name="name">Attribute</field>
+            <field name="library" ref="market_library_market" />
+            <field name="schema" ref="market_schema_attribute" />
+            <field name="model" model="ir.model" search="[('model', '=', 'product.attribute')]" />
+        </record>
+        
+        <record id="market_data_type_attribute_name" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute" />
+			<field name="name">name</field>
+            <field name="value">name</field>
+            <field name="line_type">field</field>
+            <field name="primary">1</field>
+        </record>
         
         <!-- Attribute Value -->
         
         <!-- Product -->
-           
+        <record id="market_data_type_product" model="cenit.data_type">
+			<field name="name">Product</field>
+            <field name="library" ref="market_library_market" />
+            <field name="schema" ref="market_schema_product" />
+            <field name="model" model="ir.model" search="[('model', '=', 'product.product')]" />
+        </record>
+        
+        <record id="market_data_type_product_name" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_product" />
+			<field name="name">name</field>
+            <field name="value">name</field>
+            <field name="line_type">field</field>
+            <field name="primary">1</field>
+        </record>
     </data>
 </openerp>
