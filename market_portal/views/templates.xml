@@ -28,7 +28,7 @@
 									t-att-placeholder="product_attribute.placeholder">
 									<option value=""></option>
 									<t t-foreach="product_attribute.value_ids or []" t-as="value">
-										<option t-att-value="value.id">
+										<option t-att-value="value.name">
 											<t t-esc="value.name"/>
 										</option>
 									</t>
@@ -50,7 +50,7 @@
 									t-att-placeholder="product_attribute.placeholder">
 									<option value=""></option>
 									<t t-foreach="product_attribute.value_ids or []" t-as="value">
-										<option t-att-value="value.id">
+										<option t-att-value="value.name">
 											<t t-esc="value.name"/>
 										</option>
 									</t>
