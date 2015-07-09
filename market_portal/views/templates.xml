@@ -15,6 +15,9 @@
                         <label for="name" class="control-label">Product Name</label>
                         <input type="text" name="name" t-att-value="name" id="name" class="form-control" placeholder="e.g. Villaires  Malbec Reserva" required="required" />
                     </div>
+                    <table>
+						<td>
+                    <!--Product Attributes-->
 					<t t-foreach="category.product_attributes" t-as="product_attribute">
 						<div class="form-group">
 							<label t-att-for="product_attribute.name" class="control-label"><t t-esc="product_attribute.name"/></label>
@@ -29,6 +32,9 @@
 							</select>
 						</div>
 					</t>
+					</td>
+					<td>
+					<!--Variant Attributes-->
 					<t t-foreach="category.variant_attributes" t-as="product_attribute">
 						<div class="form-group">
 							<label t-att-for="product_attribute.name" class="control-label"><t t-esc="product_attribute.name"/></label>
@@ -43,6 +49,8 @@
 							</select>
 						</div>
 					</t>
+					</td>
+					</table>
                     <p class="alert alert-danger" t-if="error">
                         <t t-esc="error"/>
                     </p>
