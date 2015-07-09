@@ -16,33 +16,47 @@
                     </div>
                     <!--Product Attributes-->
 					<t t-foreach="category.product_attributes" t-as="product_attribute">
-						<div class="form-group">
-							<label t-att-for="product_attribute.name" class="control-label"><t t-esc="product_attribute.name"/></label>
-							<input t-if="not product_attribute.value_ids" type="text" t-att-name="product_attribute.name" class="form-control" t-att-required="'required' if product_attribute.mandatory else ''"/>
-							<select t-if="product_attribute.value_ids" t-att-name="product_attribute.name" class="form-control" t-att-required="'required' if product_attribute.mandatory else ''">
-								<option value=""></option>
-								<t t-foreach="product_attribute.value_ids or []" t-as="value">
-									<option t-att-value="value.id">
-										<t t-esc="value.name"/>
-									</option>
-								</t>
-							</select>
-						</div>
+						<t t-if="product_attribute.show_in_website">
+							<div class="form-group">
+								<label t-att-for="product_attribute.name" class="control-label"><t t-esc="product_attribute.name"/></label>
+								<input t-if="not product_attribute.value_ids" type="text" 
+									t-att-name="product_attribute.name" class="form-control" 
+									t-att-required="'required' if product_attribute.mandatory else ''"
+									t-att-placeholder="product_attribute.placeholder"/>
+								<select t-if="product_attribute.value_ids" t-att-name="product_attribute.name" 
+									class="form-control" t-att-required="'required' if product_attribute.mandatory else ''"
+									t-att-placeholder="product_attribute.placeholder">
+									<option value=""></option>
+									<t t-foreach="product_attribute.value_ids or []" t-as="value">
+										<option t-att-value="value.id">
+											<t t-esc="value.name"/>
+										</option>
+									</t>
+								</select>
+							</div>
+						</t>
 					</t>
 					<!--Variant Attributes-->
 					<t t-foreach="category.variant_attributes" t-as="product_attribute">
-						<div class="form-group">
-							<label t-att-for="product_attribute.name" class="control-label"><t t-esc="product_attribute.name"/></label>
-							<input t-if="not product_attribute.value_ids" type="text" t-att-name="product_attribute.name" class="form-control" t-att-required="'required' if product_attribute.mandatory else ''"/>
-							<select t-if="product_attribute.value_ids" t-att-name="product_attribute.name" class="form-control" t-att-required="'required' if product_attribute.mandatory else ''">
-								<option value=""></option>
-								<t t-foreach="product_attribute.value_ids or []" t-as="value">
-									<option t-att-value="value.id">
-										<t t-esc="value.name"/>
-									</option>
-								</t>
-							</select>
-						</div>
+						<t t-if="product_attribute.show_in_website">
+							<div class="form-group">
+								<label t-att-for="product_attribute.name" class="control-label"><t t-esc="product_attribute.name"/></label>
+								<input t-if="not product_attribute.value_ids" type="text" 
+									t-att-name="product_attribute.name" class="form-control" 
+									t-att-required="'required' if product_attribute.mandatory else ''"
+									t-att-placeholder="product_attribute.placeholder"/>
+								<select t-if="product_attribute.value_ids" t-att-name="product_attribute.name" 
+									class="form-control" t-att-required="'required' if product_attribute.mandatory else ''"
+									t-att-placeholder="product_attribute.placeholder">
+									<option value=""></option>
+									<t t-foreach="product_attribute.value_ids or []" t-as="value">
+										<option t-att-value="value.id">
+											<t t-esc="value.name"/>
+										</option>
+									</t>
+								</select>
+							</div>
+						</t>
 					</t>
                     <p class="alert alert-danger" t-if="error">
                         <t t-esc="error"/>
