@@ -20,7 +20,7 @@
 						<div class="form-group">
 							<label t-att-for="product_attribute.name" class="control-label"><t t-esc="product_attribute.name"/></label>
 							<input t-if="not product_attribute.value_ids" type="text" t-att-name="product_attribute.name" class="form-control"/>
-							<select t-if="product_attribute.value_ids" t-att-name="product_attribute.name" class="form-control">
+							<select t-if="product_attribute.value_ids" t-att-name="product_attribute.name" class="form-control" t-att-required="'required' if product_attribute.mandatory else ''">
 								<option value=""></option>
 								<t t-foreach="product_attribute.value_ids or []" t-as="value">
 									<option t-att-value="value.id">
