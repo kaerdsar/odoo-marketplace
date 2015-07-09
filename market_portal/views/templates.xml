@@ -17,7 +17,7 @@
                     </div>
 					<t t-foreach="category.product_attributes" t-as="product_attribute">
 						<div class="form-group">
-							<label t-att-for="product_attribute.name" class="control-label" t-att-text="product_attribute.name"/>
+							<label t-att-for="product_attribute.name" class="control-label"><t t-esc="product_attribute.name"/></label>
 							<input t-if="not product_attribute.value_ids" type="text" t-att-name="product_attribute.name" class="form-control"/>
 							<select t-if="product_attribute.value_ids" t-att-name="product_attribute.name" class="form-control">
 								<option value=""></option>
