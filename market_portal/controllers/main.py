@@ -59,12 +59,16 @@ class WebsiteSaleSeller(http.Controller):
             'website_published': True,
             'categ_id': qcontext['category'].id,
         }
+        for attribute in qcontext['category'].product_attributes:
+			if attribute.name in qcontext:
+				cals[attribute.name] = qcontext[attribute.name]
         product = request.registry['product.template']
         cid = product.create(request.cr, request.uid, cals, {'category':qcontext['category'].name})
         
         vals = {
             'product_tmpl_id': cid,
             'website_published': True,
+            'categ_id': qcontext['category'].id,
         }
         for attribute in qcontext['category'].variant_attributes:
 			if attribute.name in qcontext:
