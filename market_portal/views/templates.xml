@@ -16,16 +16,18 @@
                         <input type="text" name="name" t-att-value="name" id="name" class="form-control" placeholder="e.g. Villaires  Malbec Reserva" required="required" />
                     </div>
 					<t t-foreach="category.product_attributes" t-as="product_attribute">
-						<label t-att-for="product_attribute.name" class="control-label" t-att-value="product_attribute.name"/>
-						<input t-if="not product_attribute.value_ids" type="text" t-att-name="product_attribute.name" class="form-control"/>
-						<select t-if="product_attribute.value_ids" t-att-name="product_attribute.name" class="form-control">
-	                          <option value=""></option>
-	                          <t t-foreach="product_attribute.value_ids or []" t-as="value">
-	                          	   <option t-att-value="value.id">
-                                       <t t-esc="value.name"/>
-                                   </option>
-	                          </t>
-	                      </select>
+						<div class="form-group">
+							<label t-att-for="product_attribute.name" class="control-label" t-att-text="product_attribute.name"/>
+							<input t-if="not product_attribute.value_ids" type="text" t-att-name="product_attribute.name" class="form-control"/>
+							<select t-if="product_attribute.value_ids" t-att-name="product_attribute.name" class="form-control">
+								<option value=""></option>
+								<t t-foreach="product_attribute.value_ids or []" t-as="value">
+									<option t-att-value="value.id">
+										<t t-esc="value.name"/>
+									</option>
+								</t>
+							</select>
+						</div>
 					</t>
 
                     <p class="alert alert-danger" t-if="error">
