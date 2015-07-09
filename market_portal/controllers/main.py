@@ -14,7 +14,7 @@ PPG = 20 # Products Per Page
 PPR = 4  # Products Per Row
 
 PRODUCT_FIELDS = []
-
+CATEGORY_NAME = 'Wines'
 
 class WebsiteSaleSeller(http.Controller):
         
@@ -27,6 +27,11 @@ class WebsiteSaleSeller(http.Controller):
         for field in PRODUCT_FIELDS:
             if not qcontext.get(field['name']):
                 qcontext[field['name']] = self.get_values(field['model'])
+        
+        categories = self.get_values('product.category')
+        for category in categories:
+            if category.name == CATEGORY_NAME:
+                qcontext['category'] = category 
             
         if 'error' not in qcontext and request.httprequest.method == 'POST':
             try:
