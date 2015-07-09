@@ -58,8 +58,8 @@ class WebsiteSaleSeller(http.Controller):
             'sale_ok': True,
             'website_published': True,
         }
-        commodity = request.registry['product.template']
-        cid = commodity.create(request.cr, request.uid, cals, request.context)
+        product = request.registry['product.template']
+        cid = product.create(request.cr, request.uid, cals, request.context)
         
         vals = {
             'product_tmpl_id': cid,

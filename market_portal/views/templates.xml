@@ -10,7 +10,6 @@
                     While you are here, let's add your first product. You can add more details later.
                 </div>
                 <form class="oe_signup_form" role="form" method="post" t-if="not message">
-					<span itemprop="image" t-field-options='{"widget": "image", "class": "product_detail_img"}'/>
                     <div class="form-group field-name">
                         <label for="name" class="control-label">Product Name</label>
                         <input type="text" name="name" t-att-value="name" id="name" class="form-control" placeholder="e.g. Villaires  Malbec Reserva" required="required" />
