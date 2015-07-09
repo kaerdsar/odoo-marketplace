@@ -60,7 +60,7 @@ class WebsiteSaleSeller(http.Controller):
             'categ_id': qcontext['category'].id,
         }
         product = request.registry['product.template']
-        cid = product.create(request.cr, request.uid, cals, {'category':qcontext['category'].name}))
+        cid = product.create(request.cr, request.uid, cals, {'category':qcontext['category'].name})
         
         vals = {
             'product_tmpl_id': cid,
