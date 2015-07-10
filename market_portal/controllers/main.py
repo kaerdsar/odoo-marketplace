@@ -73,7 +73,7 @@ class WebsiteSaleSeller(http.Controller):
                     if value.name == qcontext[line.attribute_id.name]:
                         id_ = value.id
                 if id_ is None:
-                    id_ = line.attribute_id.create({'name':qcontext[line.attribute_id.name], 'attribute_id':line.attribute_id.id}).id
+                    id_ = line.attribute_id.value_ids.create({'name':qcontext[line.attribute_id.name], 'attribute_id':line.attribute_id.id}).id
                 line.write({'value_ids': [(4, id_)]})
         vals = {
             'product_tmpl_id': cid,
