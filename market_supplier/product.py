@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, SUPERUSER_ID
 from openerp.tools import config
 from openerp.addons.saas_utils import connector
 
