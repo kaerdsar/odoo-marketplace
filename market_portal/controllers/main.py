@@ -68,9 +68,13 @@ class WebsiteSaleSeller(http.Controller):
         product_obj = product.browse(request.cr, request.uid, cid, request.context)
         for line in product_obj.attribute_line_ids:
             if line.attribute_id.name in qcontext:
+                id_ = None
                 for value in line.attribute_id.value_ids:
                     if value.name == qcontext[line.attribute_id.name]:
-				        line.write({'value_ids': [(4, value.id)]})
+                        id_ = value.id
+                if id_ is None:
+                    id_ = line.attribute_id.create({'name':qcontext[line.attribute_id.name]})
+                line.write({'value_ids': [(4, id_)]})
         vals = {
             'product_tmpl_id': cid,
             'website_published': True,
