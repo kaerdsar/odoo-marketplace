@@ -92,7 +92,7 @@
 			<field name="name">Product</field>
             <field name="library" ref="market_library_market" />
             <field name="schema" ref="market_schema_product_template" />
-            <field name="model" model="ir.model" search="[('model', '=', 'product.template')]" />
+            <field name="model" model="ir.model" search="[('model', '=', 'product.product')]" />
         </record>
         
         <record id="market_data_type_product_name" model="cenit.data_type.line">
@@ -108,7 +108,7 @@
 			<field name="name">Product Template</field>
             <field name="library" ref="market_library_market" />
             <field name="schema" ref="market_schema_product" />
-            <field name="model" model="ir.model" search="[('model', '=', 'product.product')]" />
+            <field name="model" model="ir.model" search="[('model', '=', 'product.template')]" />
         </record>
         
         <record id="market_data_type_product_template_name" model="cenit.data_type.line">
