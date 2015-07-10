@@ -65,6 +65,12 @@ class WebsiteSaleSeller(http.Controller):
         product = request.registry['product.template']
         cid = product.create(request.cr, request.uid, cals, {'category':qcontext['category'].name})
         
+        product_obj = product.browse(request.cr, request.uid, cid, request.context)
+        for line in product_obj.attribute_line_ids:
+            if line.attribute_id.name in qcontext:
+                for value in line.attribute_id.value_ids:
+                    if value.name == qcontext[line.attribute_id.name]:
+				        line.write({'value_ids': [(4, value.id)]})
         vals = {
             'product_tmpl_id': cid,
             'website_published': True,
