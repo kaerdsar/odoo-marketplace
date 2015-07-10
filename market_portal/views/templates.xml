@@ -19,11 +19,11 @@
 						<t t-if="product_attribute.show_in_website">
 							<div class="form-group">
 								<label t-att-for="product_attribute.name" class="control-label"><t t-esc="product_attribute.name"/></label>
-								<input t-if="not product_attribute.value_ids" type="text" 
+								<input t-if="product_attribute.style == 'input'" type="text" 
 									t-att-name="product_attribute.name" class="form-control" 
 									t-att-required="'required' if product_attribute.mandatory else ''"
 									t-att-placeholder="product_attribute.placeholder"/>
-								<select t-if="product_attribute.value_ids" t-att-name="product_attribute.name" 
+								<select t-if="product_attribute.style == 'select'" t-att-name="product_attribute.name" 
 									class="form-control" t-att-required="'required' if product_attribute.mandatory else ''"
 									t-att-placeholder="product_attribute.placeholder">
 									<option value=""></option>
@@ -41,11 +41,11 @@
 						<t t-if="product_attribute.show_in_website">
 							<div class="form-group">
 								<label t-att-for="product_attribute.name" class="control-label"><t t-esc="product_attribute.name"/></label>
-								<input t-if="not product_attribute.value_ids" type="text" 
+								<input t-if="not product_attribute.style == 'input'" type="text" 
 									t-att-name="product_attribute.name" class="form-control" 
 									t-att-required="'required' if product_attribute.mandatory else ''"
 									t-att-placeholder="product_attribute.placeholder"/>
-								<select t-if="product_attribute.value_ids" t-att-name="product_attribute.name" 
+								<select t-if="product_attribute.style == 'select'" t-att-name="product_attribute.name" 
 									class="form-control" t-att-required="'required' if product_attribute.mandatory else ''"
 									t-att-placeholder="product_attribute.placeholder">
 									<option value=""></option>
