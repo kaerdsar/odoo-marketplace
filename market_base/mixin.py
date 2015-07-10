@@ -183,7 +183,7 @@ class CatalogMixin(models.AbstractModel):
         return res and res[0] or False
 
     def _get_root(self, cr, uid, model):
-        wdt = self.pool.get('cenit.data.type')
+        wdt = self.pool.get('cenit.data_type')
         matching_id = wdt.search(cr, uid, [('model_id.model', '=', model)])
         if matching_id:
             return wdt.browse(cr, uid, matching_id[0]).name
