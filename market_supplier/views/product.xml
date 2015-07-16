@@ -4,9 +4,9 @@
     	
 		<!-- Catalog -->
     	
-		<!--<record id="market_catalog_action" model="ir.actions.act_window">
+		<record id="market_catalog_action" model="ir.actions.act_window">
             <field name="name">Catalog</field>
-            <field name="res_model">product.template.commodity</field>
+            <field name="res_model">product.template</field>
             <field name="view_type">form</field>
             <field name="view_mode">kanban,form</field>
         </record>
@@ -15,18 +15,18 @@
 			<field name="act_window_id" ref="market_catalog_action"/>
 			<field name="sequence">1</field>
 			<field name="view_mode">kanban</field>
-			<field name="view_id" ref="market_product.product_template_commodity_kanban_view" />
+			<field name="view_id" ref="market_base.product_template_market_kanban_view" />
 		</record>
 		
 		<record id="market_catalog_form_action_views" model="ir.actions.act_window.view">
 			<field name="act_window_id" ref="market_catalog_action"/>
 			<field name="sequence">2</field>
 			<field name="view_mode">form</field>
-			<field name="view_id" ref="market_product.product_template_commodity_form_view" />
+			<field name="view_id" ref="market_base.product_template_market_form_view" />
 		</record>
 		
         <menuitem id="market_catalog_menu" parent="market_supplier_menu" action="market_catalog_action" sequence="7" />
-		-->
+
 		<!-- Requests -->
 		
 		<record id="market_requests_action" model="ir.actions.act_window">
