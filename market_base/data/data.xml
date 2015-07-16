@@ -127,5 +127,13 @@
             <field name="reference" ref="market_data_type_category"/>
             <field name="line_cardinality">2one</field>
         </record>
+        <record id="market_data_type_product_template_attribute_line" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_product_template" />
+			<field name="name">attribute_line_ids</field>
+            <field name="value">attribute_line_ids</field>
+            <field name="line_type">model</field>
+            <field name="reference" ref="market_data_type_attribute"/>
+            <field name="line_cardinality">2many</field>
+        </record>
     </data>
 </openerp>
