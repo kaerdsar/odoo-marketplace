@@ -68,7 +68,30 @@
             <field name="reference" ref="market_data_type_category" />
             <field name="line_cardinality">2one</field>
         </record>
+        <record id="market_data_type_category_manual_variants" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_category" />
+			<field name="name">manual_variants</field>
+            <field name="value">manual_variants</field>
+            <field name="line_type">field</field>
+            <field name="primary">1</field>
+        </record>
         
+        <record id="market_data_type_category_product_attributes" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_category" />
+			<field name="name">product_attributes</field>
+            <field name="value">product_attributes</field>
+            <field name="line_type">model</field>
+            <field name="reference" ref="market_data_type_attribute" />
+            <field name="line_cardinality">2many</field>
+        </record>
+        <record id="market_data_type_category_variant_attributes" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_category" />
+			<field name="name">variant_attributes</field>
+            <field name="value">variant_attributes</field>
+            <field name="line_type">model</field>
+            <field name="reference" ref="market_data_type_attribute" />
+            <field name="line_cardinality">2many</field>
+        </record>
         <!-- Attribute -->
         <record id="market_data_type_attribute" model="cenit.data_type">
 			<field name="name">Attribute</field>
