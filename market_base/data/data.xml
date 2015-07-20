@@ -97,7 +97,7 @@
             <field name="data_type" ref="market_data_type_category" />
 			<field name="name">product_attributes</field>
             <field name="value">product_attributes</field>
-            <field name="line_type">model</field>
+            <field name="line_type">reference</field>
             <field name="reference" ref="market_data_type_attribute" />
             <field name="line_cardinality">2many</field>
         </record>
@@ -105,7 +105,7 @@
             <field name="data_type" ref="market_data_type_category" />
 			<field name="name">variant_attributes</field>
             <field name="value">variant_attributes</field>
-            <field name="line_type">model</field>
+            <field name="line_type">reference</field>
             <field name="reference" ref="market_data_type_attribute" />
             <field name="line_cardinality">2many</field>
         </record>
@@ -142,12 +142,25 @@
             <field name="line_type">field</field>
             <field name="primary">1</field>
         </record>
-        
+        <record id="market_data_type_product_template_image" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_product_template" />
+			<field name="name">image</field>
+            <field name="value">image</field>
+            <field name="line_type">field</field>
+            <field name="primary">1</field>
+        </record>
+        <record id="market_data_type_product_template_description" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_product_template" />
+			<field name="name">description</field>
+            <field name="value">description</field>
+            <field name="line_type">field</field>
+            <field name="primary">1</field>
+        </record>
         <record id="market_data_type_product_template_categ" model="cenit.data_type.line">
             <field name="data_type" ref="market_data_type_product_template" />
 			<field name="name">categ_id</field>
             <field name="value">categ_id</field>
-            <field name="line_type">model</field>
+            <field name="line_type">reference</field>
             <field name="reference" ref="market_data_type_category"/>
             <field name="line_cardinality">2one</field>
         </record>
@@ -155,7 +168,7 @@
             <field name="data_type" ref="market_data_type_product_template" />
 			<field name="name">attribute_line_ids</field>
             <field name="value">attribute_line_ids</field>
-            <field name="line_type">model</field>
+            <field name="line_type">reference</field>
             <field name="reference" ref="market_data_type_attribute"/>
             <field name="line_cardinality">2many</field>
         </record>
