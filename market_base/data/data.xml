@@ -58,8 +58,35 @@
             <field name="line_type">field</field>
             <field name="primary">1</field>
         </record>
+		
+		<record id="market_data_type_attribute_belongs_to" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute" />
+			<field name="name">belongs_to</field>
+            <field name="value">belongs_to</field>
+            <field name="line_type">field</field>
+        </record>
              
-        
+        <record id="market_data_type_attribute_attribute_type" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute" />
+			<field name="name">attribute_type</field>
+            <field name="value">attribute_type</field>
+            <field name="line_type">field</field>
+        </record>
+		
+		<record id="market_data_type_attribute_mandatory" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute" />
+			<field name="name">mandatory</field>
+            <field name="value">mandatory</field>
+            <field name="line_type">field</field>
+        </record>
+		
+		<record id="market_data_type_attribute_sequence" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute" />
+			<field name="name">sequence</field>
+            <field name="value">sequence</field>
+            <field name="line_type">field</field>
+        </record>
+		
         <!-- Category -->
 
         <record id="market_data_type_category" model="cenit.data_type">
