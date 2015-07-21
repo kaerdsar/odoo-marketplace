@@ -159,16 +159,23 @@ class CatalogMixin(models.AbstractModel):
             return connector.call(db, self._name, 'read_group', *args)
         return super(CatalogMixin, self).read_group(cr, uid, *args)
 
+#     @api.cr_uid
+#     def pull_from_catalog(self, cr, uid, oid):
+#         wh = self.pool.get('cenit.handler')
+#         context = {'catalog_db':'db_master'}
+#         obj = self.browse(cr, uid, oid, context=context)
+#         model_id = self.pool.get('ir.model').search(cr, uid, [('model', '=', self._name)], context=context)[0]
+#         data_type_id = self.pool.get('cenit.data_type').search(cr, uid, [('model', '=', model_id)], context=context)
+#         data_type = self.pool.get('cenit.data_type').browse(cr, uid, data_type_id, context=context)
+#         vals = connector.call(config.get('db_master'), 'cenit.serializer',
+#                               'serialize', obj, data_type)
+#         return wh.add(cr, 1, vals, self._get_root(cr, uid, self._name))
+    
     @api.cr_uid
     def pull_from_catalog(self, cr, uid, oid):
         wh = self.pool.get('cenit.handler')
-        context = {'catalog_db':'db_master'}
-        obj = self.browse(cr, uid, oid, context=context)
-        model_id = self.pool.get('ir.model').search(cr, uid, [('model', '=', self._name)], context=context)[0]
-        data_type_id = self.pool.get('cenit.data_type').search(cr, uid, [('model', '=', model_id)], context=context)
-        data_type = self.pool.get('cenit.data_type').browse(cr, uid, data_type_id, context=context)
         vals = connector.call(config.get('db_master'), 'cenit.serializer',
-                              'serialize', obj, data_type)
+                              'serialize_model_id', self._name, oid)
         return wh.add(cr, 1, vals, self._get_root(cr, uid, self._name))
 
     @api.cr_uid

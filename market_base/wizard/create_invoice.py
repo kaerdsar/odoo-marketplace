@@ -20,7 +20,7 @@
 ##############################################################################
 
 from openerp import models, fields, SUPERUSER_ID
-from openerp.addons.market_product import mixin, utils
+#from openerp.addons.market_product import mixin, utils
 
 
 class StockInvoiceOnshipping(models.TransientModel):

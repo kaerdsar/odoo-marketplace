@@ -23,7 +23,7 @@ from openerp import models, fields, api
 from openerp.exceptions import ValidationError
 import openerp.addons.decimal_precision as dp
 from openerp.osv import fields as old_fields
-from openerp.addons.market_product import utils, mixin
+#from openerp.addons.market_product import utils, mixin
 
 
 class ProductTemplate(models.Model):
