@@ -108,7 +108,7 @@
 						 		<field name="product_variant_ids" nolabel="1" colspan="4" context="{'create_product_variant': True}" >
 						 			<tree string="Variants" editable="bottom" >
 					                    <field name="default_code" />			                    
-					                    <field name="attribute_value_ids" widget="many2many_tags"  />
+					                    <field name="attribute_value_ids" widget="many2many_tags" invisible="1" />
 					                </tree>
 								</field>
 							</page>
