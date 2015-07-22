@@ -66,7 +66,7 @@
             <field name="data_type" ref="market_data_type_product" />
 			<field name="name">attribute_value_ids</field>
             <field name="value">attribute_value_ids</field>
-            <field name="line_type">reference</field>
+            <field name="line_type">model</field>
             <field name="reference" ref="market_data_type_attribute_value" />
             <field name="line_cardinality">2many</field>
         </record>
@@ -126,7 +126,7 @@
             <field name="data_type" ref="market_data_type_attribute" />
 			<field name="name">value_ids</field>
             <field name="value">value_ids</field>
-            <field name="line_type">reference</field>
+            <field name="line_type">model</field>
             <field name="reference" ref="market_data_type_attribute_value" />
             <field name="line_cardinality">2many</field>
         </record>
@@ -246,7 +246,7 @@
             <field name="data_type" ref="market_data_type_product_attribute_line" />
 			<field name="name">value_ids</field>
             <field name="value">value_ids</field>
-            <field name="line_type">reference</field>
+            <field name="line_type">model</field>
             <field name="reference" ref="market_data_type_attribute_value"/>
             <field name="line_cardinality">2many</field>
         </record>
@@ -292,7 +292,7 @@
             <field name="data_type" ref="market_data_type_product_template" />
 			<field name="name">attribute_line_ids</field>
             <field name="value">attribute_line_ids</field>
-            <field name="line_type">reference</field>
+            <field name="line_type">model</field>
             <field name="reference" ref="market_data_type_product_attribute_line"/>
             <field name="line_cardinality">2many</field>
         </record>
@@ -300,7 +300,7 @@
             <field name="data_type" ref="market_data_type_product_template" />
 			<field name="name">product_variant_ids</field>
             <field name="value">product_variant_ids</field>
-            <field name="line_type">reference</field>
+            <field name="line_type">model</field>
             <field name="reference" ref="market_data_type_product"/>
             <field name="line_cardinality">2many</field>
         </record>
