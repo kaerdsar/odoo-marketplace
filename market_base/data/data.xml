@@ -47,90 +47,7 @@
         </record>
 
         <!-- Data Types -->   
-        <!-- Product -->
-        <record id="market_data_type_product" model="cenit.data_type">
-			<field name="name">Product</field>
-            <field name="library" ref="market_library_market" />
-            <field name="schema" ref="market_schema_product" />
-            <field name="model" model="ir.model" search="[('model', '=', 'product.product')]" />
-        </record>
         
-        <record id="market_data_type_product_name" model="cenit.data_type.line">
-            <field name="data_type" ref="market_data_type_product" />
-			<field name="name">name</field>
-            <field name="value">name</field>
-            <field name="line_type">field</field>
-            <field name="primary">1</field>
-        </record>
-        <record id="market_data_type_product_attribute_value_ids" model="cenit.data_type.line">
-            <field name="data_type" ref="market_data_type_product" />
-			<field name="name">attribute_value_ids</field>
-            <field name="value">attribute_value_ids</field>
-            <field name="line_type">model</field>
-            <field name="reference" ref="market_data_type_attribute_value" />
-            <field name="line_cardinality">2many</field>
-        </record>
-        <record id="market_data_type_product_product_template_id" model="cenit.data_type.line">
-            <field name="data_type" ref="market_data_type_product" />
-			<field name="name">product_tmpl_id</field>
-            <field name="value">product_tmpl_id</field>
-            <field name="line_type">reference</field>
-            <field name="reference" ref="market_data_type_product_template" />
-            <field name="line_cardinality">2one</field>
-        </record>
-        
-        <!-- Attribute -->
-        <record id="market_data_type_attribute" model="cenit.data_type">
-			<field name="name">Attribute</field>
-            <field name="library" ref="market_library_market" />
-            <field name="schema" ref="market_schema_attribute" />
-            <field name="model" model="ir.model" search="[('model', '=', 'product.attribute')]" />
-        </record>
-        
-        <record id="market_data_type_attribute_name" model="cenit.data_type.line">
-            <field name="data_type" ref="market_data_type_attribute" />
-			<field name="name">name</field>
-            <field name="value">name</field>
-            <field name="line_type">field</field>
-            <field name="primary">1</field>
-        </record>
-		
-		<record id="market_data_type_attribute_belongs_to" model="cenit.data_type.line">
-            <field name="data_type" ref="market_data_type_attribute" />
-			<field name="name">belongs_to</field>
-            <field name="value">belongs_to</field>
-            <field name="line_type">field</field>
-        </record>
-             
-        <record id="market_data_type_attribute_attribute_type" model="cenit.data_type.line">
-            <field name="data_type" ref="market_data_type_attribute" />
-			<field name="name">attribute_type</field>
-            <field name="value">attribute_type</field>
-            <field name="line_type">field</field>
-        </record>
-		
-		<record id="market_data_type_attribute_mandatory" model="cenit.data_type.line">
-            <field name="data_type" ref="market_data_type_attribute" />
-			<field name="name">mandatory</field>
-            <field name="value">mandatory</field>
-            <field name="line_type">field</field>
-        </record>
-		
-		<record id="market_data_type_attribute_sequence" model="cenit.data_type.line">
-            <field name="data_type" ref="market_data_type_attribute" />
-			<field name="name">sequence</field>
-            <field name="value">sequence</field>
-            <field name="line_type">field</field>
-        </record>
-        <record id="market_data_type_attribute_value_ids" model="cenit.data_type.line">
-            <field name="data_type" ref="market_data_type_attribute" />
-			<field name="name">value_ids</field>
-            <field name="value">value_ids</field>
-            <field name="line_type">model</field>
-            <field name="reference" ref="market_data_type_attribute_value" />
-            <field name="line_cardinality">2many</field>
-        </record>
-		
         <!-- Category -->
 
         <record id="market_data_type_category" model="cenit.data_type">
@@ -219,21 +136,73 @@
             <field name="line_cardinality">2many</field>
         </record>
         
-        <!-- Product Attribute Line-->
+        <!-- Attribute -->
+        <record id="market_data_type_attribute" model="cenit.data_type">
+			<field name="name">Attribute</field>
+            <field name="library" ref="market_library_market" />
+            <field name="schema" ref="market_schema_attribute" />
+            <field name="model" model="ir.model" search="[('model', '=', 'product.attribute')]" />
+        </record>
+        
+        <record id="market_data_type_attribute_name" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute" />
+			<field name="name">name</field>
+            <field name="value">name</field>
+            <field name="line_type">field</field>
+            <field name="primary">1</field>
+        </record>
+		
+		<record id="market_data_type_attribute_belongs_to" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute" />
+			<field name="name">belongs_to</field>
+            <field name="value">belongs_to</field>
+            <field name="line_type">field</field>
+        </record>
+             
+        <record id="market_data_type_attribute_attribute_type" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute" />
+			<field name="name">attribute_type</field>
+            <field name="value">attribute_type</field>
+            <field name="line_type">field</field>
+        </record>
+		
+		<record id="market_data_type_attribute_mandatory" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute" />
+			<field name="name">mandatory</field>
+            <field name="value">mandatory</field>
+            <field name="line_type">field</field>
+        </record>
+		
+		<record id="market_data_type_attribute_sequence" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute" />
+			<field name="name">sequence</field>
+            <field name="value">sequence</field>
+            <field name="line_type">field</field>
+        </record>
+        <record id="market_data_type_attribute_value_ids" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute" />
+			<field name="name">value_ids</field>
+            <field name="value">value_ids</field>
+            <field name="line_type">model</field>
+            <field name="reference" ref="market_data_type_attribute_value" />
+            <field name="line_cardinality">2many</field>
+        </record>
+		
+		<!-- Product Attribute Line-->
         <record id="market_data_type_product_attribute_line" model="cenit.data_type">
 			<field name="name">Product Attribute Line</field>
             <field name="library" ref="market_library_market" />
             <field name="schema" ref="market_schema_product_attribute_line" />
             <field name="model" model="ir.model" search="[('model', '=', 'product.attribute.line')]" />
         </record>
-        <record id="market_data_type_product_attribute_line_product_tmpl_id" model="cenit.data_type.line">
+        <!--<record id="market_data_type_product_attribute_line_product_tmpl_id" model="cenit.data_type.line">
             <field name="data_type" ref="market_data_type_product_attribute_line" />
 			<field name="name">product_tmpl_id</field>
             <field name="value">product_tmpl_id</field>
             <field name="line_type">reference</field>
             <field name="reference" ref="market_data_type_product_template"/>
             <field name="line_cardinality">2one</field>
-        </record>
+        </record>-->
         <record id="market_data_type_product_attribute_line_attribute_id" model="cenit.data_type.line">
             <field name="data_type" ref="market_data_type_product_attribute_line" />
 			<field name="name">attribute_id</field>
@@ -251,7 +220,7 @@
             <field name="line_cardinality">2many</field>
         </record>
         
-        <!-- Product Template-->
+		<!-- Product Template-->
         <record id="market_data_type_product_template" model="cenit.data_type">
 			<field name="name">Product Template</field>
             <field name="library" ref="market_library_market" />
@@ -312,5 +281,37 @@
             <field name="reference" ref="base.res_users"/>
             <field name="line_cardinality">2one</field>
         </record>-->
+        
+        <!-- Product -->
+        <record id="market_data_type_product" model="cenit.data_type">
+			<field name="name">Product</field>
+            <field name="library" ref="market_library_market" />
+            <field name="schema" ref="market_schema_product" />
+            <field name="model" model="ir.model" search="[('model', '=', 'product.product')]" />
+        </record>
+        
+        <record id="market_data_type_product_name" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_product" />
+			<field name="name">name</field>
+            <field name="value">name</field>
+            <field name="line_type">field</field>
+            <field name="primary">1</field>
+        </record>
+        <record id="market_data_type_product_attribute_value_ids" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_product" />
+			<field name="name">attribute_value_ids</field>
+            <field name="value">attribute_value_ids</field>
+            <field name="line_type">model</field>
+            <field name="reference" ref="market_data_type_attribute_value" />
+            <field name="line_cardinality">2many</field>
+        </record>
+        <record id="market_data_type_product_product_template_id" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_product" />
+			<field name="name">product_tmpl_id</field>
+            <field name="value">product_tmpl_id</field>
+            <field name="line_type">reference</field>
+            <field name="reference" ref="market_data_type_product_template" />
+            <field name="line_cardinality">2one</field>
+        </record>
     </data>
 </openerp>
