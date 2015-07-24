@@ -119,6 +119,16 @@
             <field name="reference" ref="market_data_type_attribute_value" />
             <field name="line_cardinality">2many</field>
         </record>
+        
+        <!-- Attribute Value line (Placed here for XML load order)-->
+        <record id="market_data_type_attribute_value_attribute_id" model="cenit.data_type.line">
+            <field name="data_type" ref="market_data_type_attribute_value" />
+			<field name="name">attribute_id</field>
+            <field name="value">attribute_id</field>
+            <field name="line_type">reference</field>
+            <field name="reference" ref="market_data_type_attribute" />
+            <field name="line_cardinality">2one</field>
+        </record>
 		
 		<!-- Category -->
 
